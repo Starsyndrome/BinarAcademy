@@ -1,0 +1,10 @@
+	     Struk Pembayaran	
+
+No	Yang Dipesan	Harga	  Jumlah	
+1. Es Kopi Susu	 | 15000.0	 | 	1
+2. Cappuccino	 | 20000.0	 | 	1
+3. French Fries	 | 10000.0	 | 	1
+4. Croissant	 | 12000.0	 | 	1
+
+Totalnya yaitu: 57000.0
+Terima kasih sudah datang ke Stars Coffee

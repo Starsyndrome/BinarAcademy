@@ -16,6 +16,12 @@ public class StarsCoffeeController {
     Susah banget rasanya, mau nyerah juga udah nanggung ga bisa, saya pengennya bener-bener
     review materi ini lagi, implementasinya susah betul, kayak otak saya ga sampe gitu kak ya Allah wkwk
      */
+
+    /*
+    Oh iya kak, file jarnya error, makanya saya ga upload saat pengumpulan di google form, terus kemarin saya
+    coba-coba lagi, dan akhirnya bisa tapi kayak aneh gitu kak, saya kasih file txt di resources aja kak,
+    jarnya saya upload di google drive.
+     */
     @PostConstruct
     public void init() throws ParseException{
         try {

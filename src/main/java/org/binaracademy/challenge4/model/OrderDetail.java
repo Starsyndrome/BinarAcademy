@@ -7,13 +7,15 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class OrderDetail {
+@Table(name = "order_detail")
+public class OrderDetail implements Serializable {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -22,9 +24,11 @@ public class OrderDetail {
     private String orderDetailID;
 
     @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToOne
+    @JoinColumn(name = "order_id")
     private Order order;
 
     @Column(name = "quantity")

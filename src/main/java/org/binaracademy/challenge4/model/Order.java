@@ -16,9 +16,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "\"order\"")
-public class Order implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+public class Order implements Serializable{
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -27,6 +25,7 @@ public class Order implements Serializable {
     private String orderID;
 
     @ManyToOne
+    @JoinColumn(name = "users_id")
     private Users users;
 
     @Column(name = "order_time")
@@ -36,5 +35,5 @@ public class Order implements Serializable {
     private String destinationAddress;
 
     @Column(name = "completed")
-    private String completed;
+    private Boolean completed;
 }

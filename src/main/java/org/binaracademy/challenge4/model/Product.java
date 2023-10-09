@@ -7,13 +7,18 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Product{
+@Table(name = "product")
+public class Product implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -31,5 +36,6 @@ public class Product{
     private Integer price;
 
     @ManyToOne
+    @JoinColumn(name = "merchant_id")
     private Merchant merchant;
 }

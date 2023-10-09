@@ -7,13 +7,15 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Merchant {
+@Table(name = "merchant")
+public class Merchant implements Serializable {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(

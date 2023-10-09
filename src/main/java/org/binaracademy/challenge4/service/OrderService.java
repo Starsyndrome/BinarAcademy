@@ -1,8 +1,8 @@
 package org.binaracademy.challenge4.service;
 
-import org.binaracademy.challenge4.model.response.OrderResponse;
+import org.binaracademy.challenge4.model.OrderDetail;
 
 
 public interface OrderService {
-    OrderResponse newOrder(String name);
+    Boolean newOrder(OrderDetail orderDetail);
 }

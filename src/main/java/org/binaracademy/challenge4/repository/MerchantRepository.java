@@ -21,4 +21,9 @@ public interface MerchantRepository extends JpaRepository<Merchant, String> {
 
     @Query(nativeQuery = true, value = "update merchant set merchant_open = :newStatus where merchant_open = :oldStatus")
     Boolean editOpenMerchant (@Param("oldStatus") Boolean oldStatus, @Param("newStatus") Boolean newStatus);
+
+// Belum tau ini bener apa nggak
+
+//    @Query(nativeQuery = true, value = "select * from merchant m where m.merchant_open = true")
+//    Page<Merchant> showMerchantOpen(Pageable pageable);
 }

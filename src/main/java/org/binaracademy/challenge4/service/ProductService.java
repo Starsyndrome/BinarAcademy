@@ -8,7 +8,6 @@ public interface ProductService {
 
     Boolean addNewProduct(Product product);
     Page<Product> getAllProductPaged(int page);
-
     Boolean submitNewProduct(Product product);
     Boolean updateProductFromName(String oldProductName, String newProductName);
     Boolean updateProductFromPrice(double oldProductPrice, double newProductPrice);

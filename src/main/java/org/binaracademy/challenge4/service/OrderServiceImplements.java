@@ -6,7 +6,6 @@ import org.binaracademy.challenge4.repository.OrderDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
 import java.util.Optional;
 
 
@@ -22,10 +21,8 @@ public class OrderServiceImplements implements OrderService{
        return Optional.ofNullable(orderDetail)
                .map(orderResponse1 -> orderDetailRepository.save(orderDetail))
                .map(result -> {
-                   boolean isSuccess = Objects.nonNull(orderDetail);
-                   if (isSuccess) {
-                       log.info("Berhasil memesan dan masuk ke database");
-                   }
+                   boolean isSuccess = true;
+                   log.info("Berhasil memesan dan masuk ke database");
                    return isSuccess;
                })
                .orElseGet(() -> {

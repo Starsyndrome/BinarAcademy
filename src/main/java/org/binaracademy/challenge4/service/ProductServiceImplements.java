@@ -24,14 +24,12 @@ public class ProductServiceImplements implements ProductService{
         return Optional.ofNullable(product)
                 .map(newProduct -> productRepository.save(product))
                 .map(result -> {
-                    boolean isSuccess = Objects.nonNull(result);
-                    if (isSuccess) {
-                        log.info("Produk berhasil ditambahkan dengan nama produk: {}", product.getProductName());
-                    }
+                    boolean isSuccess = true;
+                    log.info("Produk berhasil ditambahkan dengan nama produk: {}", product.getProductName());
                     return isSuccess;
                 })
                 .orElseGet(()-> {
-                    log.info("Produk gagal disimpan dengan nama: {}", product.getProductName());
+                    log.info("Produk gagal disimpan di database");
                     return Boolean.FALSE;
                 });
     }

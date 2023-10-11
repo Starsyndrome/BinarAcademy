@@ -8,7 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
 import java.util.Optional;
 
 @Slf4j
@@ -24,14 +23,12 @@ public class MerchantServiceImplements implements MerchantService{
         return Optional.ofNullable(merchant)
                 .map(newMerchant -> merchantRepository.save(merchant))
                 .map(result -> {
-                    boolean isSuccess = Objects.nonNull(result);
-                    if (isSuccess) {
-                        log.info("Merchant berhasil ditambahkan dengan nama merchant: {}", merchant.getMerchantName());
-                    }
+                    boolean isSuccess = true;
+                    log.info("Merchant berhasil ditambahkan dengan nama merchant: {}", merchant.getMerchantName());
                     return isSuccess;
                 })
                 .orElseGet(() -> {
-                    log.info("Merchant gagal disimpan dengan nama: {}", merchant.getMerchantName());
+                    log.info("Merchant gagal disimpan di database");
                     return Boolean.FALSE;
                 });
     }
@@ -40,6 +37,11 @@ public class MerchantServiceImplements implements MerchantService{
     public Page<Merchant> getAllMerchantPaged(int page) {
         return merchantRepository.getAllMerchant(PageRequest.of(page, 3));
     }
+
+//    @Override
+//    public Page<Merchant> showMerchantOpen(int page) {
+//        return merchantRepository.showMerchantOpen(PageRequest.of(page,3));
+//    }
 
     @Override
     public Boolean submitNewMerchant(Merchant merchant) {

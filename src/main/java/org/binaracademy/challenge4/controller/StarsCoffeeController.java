@@ -53,6 +53,7 @@ public class StarsCoffeeController {
         System.out.println("4. Tambahkan merchant");
         System.out.println("5. Tambahkan user");
         System.out.println("6. Order");
+//        System.out.println("7. Merchant yang sedang buka");
         System.out.println("0. Keluar");
         System.out.print("Inputkan pilihan => ");
         int pilihan = scanner.nextInt();
@@ -90,6 +91,9 @@ public class StarsCoffeeController {
                 orderController.newOrder();
                 this.mainMenu();
                 break;
+//            case 7:
+//                merchantController.showMerchantOpen(null);
+//                this.mainMenu();
             case 0:
                 System.out.println("Terima kasih sudah berkunjung!");
                 System.exit(0);

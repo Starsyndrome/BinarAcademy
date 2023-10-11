@@ -40,4 +40,25 @@ public class ProductServiceImplements implements ProductService{
     public Page<Product> getAllProductPaged(int page) {
         return productRepository.getAllProduct(PageRequest.of(page, 3));
     }
+
+    @Override
+    public Boolean submitNewProduct(Product product) {
+        return productRepository.submitNewProduct(product.getProductID(), product.getProductCode(),
+                product.getProductName(), product.getPrice());
+    }
+
+    @Override
+    public Boolean updateProductFromName(String oldProductName, String newProductName) {
+        return productRepository.editNameProduct(oldProductName, newProductName);
+    }
+
+    @Override
+    public Boolean updateProductFromPrice(double oldProductPrice, double newProductPrice) {
+        return productRepository.editPriceProduct(oldProductPrice, newProductPrice);
+    }
+
+    @Override
+    public Boolean deleteProductFromName(String productName) {
+        return productRepository.deleteProductFromName(productName);
+    }
 }

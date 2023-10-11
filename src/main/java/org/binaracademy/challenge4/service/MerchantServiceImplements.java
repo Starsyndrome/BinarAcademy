@@ -40,4 +40,15 @@ public class MerchantServiceImplements implements MerchantService{
     public Page<Merchant> getAllMerchantPaged(int page) {
         return merchantRepository.getAllMerchant(PageRequest.of(page, 3));
     }
+
+    @Override
+    public Boolean submitNewMerchant(Merchant merchant) {
+        return merchantRepository.submitNewMerchant(merchant.getMerchantID(), merchant.getMerchantCode(),
+                merchant.getMerchantName(), merchant.getMerchantLocation(), merchant.getOpen());
+    }
+
+    @Override
+    public Boolean editStatusMerchant(Boolean oldStatus, Boolean newStatus) {
+        return merchantRepository.editOpenMerchant(oldStatus, newStatus);
+    }
 }

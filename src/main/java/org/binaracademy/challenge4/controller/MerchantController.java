@@ -15,8 +15,6 @@ public class MerchantController {
 
     @Autowired
     MerchantService merchantService;
-//    @Autowired
-//    Merchant merchant;
     private Scanner scanner = new Scanner(System.in);
 
     public void addNewMerchant(){
@@ -53,16 +51,4 @@ public class MerchantController {
         merchants = merchantService.getAllMerchantPaged(pilihan);
         this.merchantCurrentlyAvailable(merchants);
     }
-
-    //Bingung ini
-
-//    public void showMerchantOpen(Page<Merchant> merchants){
-//        merchants = Optional.ofNullable(merchants)
-//                .filter(merchants1 -> merchant.getOpen().equals(true))
-//                .orElseGet(() -> merchantService.showMerchantOpen(0));
-//        merchants.forEach(merchant -> System.out.println(merchant.getMerchantName() + "\t  | \t\t" + merchant.getMerchantCode() +
-//                "\t\t  |  \t\t" + merchant.getMerchantLocation() + "\t\t  |  \t" + merchant.getOpen()));
-//        System.out.println("Halaman " + (merchants.getPageable().getPageNumber() + 1) + " dari " + merchants.getTotalPages());
-//        System.out.println("Jumlah data: " + merchants.getTotalElements());
-//    }
 }

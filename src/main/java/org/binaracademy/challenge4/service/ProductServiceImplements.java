@@ -8,7 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
 import java.util.Optional;
 
 @Slf4j
@@ -41,22 +40,42 @@ public class ProductServiceImplements implements ProductService{
 
     @Override
     public Boolean submitNewProduct(Product product) {
-        return productRepository.submitNewProduct(product.getProductID(), product.getProductCode(),
-                product.getProductName(), product.getPrice());
+        try {
+            productRepository.submitNewProduct(product.getProductID(), product.getProductCode(),
+                    product.getProductName(), product.getPrice());
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override
     public Boolean updateProductFromName(String oldProductName, String newProductName) {
-        return productRepository.editNameProduct(oldProductName, newProductName);
+        try{
+            productRepository.editNameProduct(oldProductName, newProductName);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override
     public Boolean updateProductFromPrice(double oldProductPrice, double newProductPrice) {
-        return productRepository.editPriceProduct(oldProductPrice, newProductPrice);
+        try{
+            productRepository.editPriceProduct(oldProductPrice, newProductPrice);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override
     public Boolean deleteProductFromName(String productName) {
-        return productRepository.deleteProductFromName(productName);
+        try{
+            productRepository.deleteProductFromName(productName);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 }

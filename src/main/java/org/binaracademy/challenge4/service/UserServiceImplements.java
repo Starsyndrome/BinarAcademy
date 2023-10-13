@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-public class UserServiceImplements implements UserService{
+public class UserServiceImplements implements UserService {
 
     @Autowired
     UserRepository userRepository;
@@ -32,27 +32,52 @@ public class UserServiceImplements implements UserService{
 
     @Override
     public Boolean submitNewUser(Users users) {
-        return userRepository.submitNewUser(users.getUserID(), users.getUsername(),
-                users.getEmailAddress(), users.getPassword());
+        try {
+            userRepository.submitNewUser(users.getUserID(), users.getUsername(),
+                    users.getEmailAddress(), users.getPassword());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
     public Boolean updateUserFromUsername(String oldUsername, String newUsername) {
-        return userRepository.editUsersFromUsername(oldUsername, newUsername);
+        try {
+            userRepository.editUsersFromUsername(oldUsername, newUsername);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
     public Boolean updateUserFromEmail(String oldEmail, String newEmail) {
-        return userRepository.editUsersFromEmail(oldEmail, newEmail);
+        try {
+            userRepository.editUsersFromEmail(oldEmail, newEmail);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
     public Boolean updateUserFromPassword(String oldPassword, String newPassword) {
-        return userRepository.editUsersFromPassword(oldPassword, newPassword);
+        try {
+            userRepository.editUsersFromPassword(oldPassword, newPassword);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
     public Boolean deleteUserFromUsername(String userUsername) {
-        return userRepository.deleteUsersFromUsername(userUsername);
+        try {
+            userRepository.deleteUsersFromUsername(userUsername);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

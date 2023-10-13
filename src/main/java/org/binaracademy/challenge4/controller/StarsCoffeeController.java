@@ -91,9 +91,6 @@ public class StarsCoffeeController {
                 orderController.newOrder();
                 this.mainMenu();
                 break;
-//            case 7:
-//                merchantController.showMerchantOpen(null);
-//                this.mainMenu();
             case 0:
                 System.out.println("Terima kasih sudah berkunjung!");
                 System.exit(0);

@@ -38,19 +38,34 @@ public class MerchantServiceImplements implements MerchantService{
         return merchantRepository.getAllMerchant(PageRequest.of(page, 3));
     }
 
-//    @Override
-//    public Page<Merchant> showMerchantOpen(int page) {
-//        return merchantRepository.showMerchantOpen(PageRequest.of(page,3));
-//    }
+    @Override
+    public Boolean showMerchantOpen(Boolean statusMerchant) {
+        try {
+            merchantRepository.showMerchantOpen(statusMerchant);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
 
     @Override
     public Boolean submitNewMerchant(Merchant merchant) {
-        return merchantRepository.submitNewMerchant(merchant.getMerchantID(), merchant.getMerchantCode(),
-                merchant.getMerchantName(), merchant.getMerchantLocation(), merchant.getOpen());
+        try {
+            merchantRepository.submitNewMerchant(merchant.getMerchantID(), merchant.getMerchantCode(),
+                    merchant.getMerchantName(), merchant.getMerchantLocation(), merchant.getOpen());
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override
     public Boolean editStatusMerchant(Boolean oldStatus, Boolean newStatus) {
-        return merchantRepository.editOpenMerchant(oldStatus, newStatus);
+        try {
+            merchantRepository.editOpenMerchant(oldStatus, newStatus);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 }

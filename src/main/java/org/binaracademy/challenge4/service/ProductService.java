@@ -12,4 +12,5 @@ public interface ProductService {
     Boolean updateProductFromName(String oldProductName, String newProductName);
     Boolean updateProductFromPrice(double oldProductPrice, double newProductPrice);
     Boolean deleteProductFromName(String productName);
+    Boolean findByName(String nameProduct);
 }

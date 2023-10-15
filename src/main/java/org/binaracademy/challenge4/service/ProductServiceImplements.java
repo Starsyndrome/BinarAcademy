@@ -78,4 +78,14 @@ public class ProductServiceImplements implements ProductService{
             return false;
         }
     }
+
+    @Override
+    public Boolean findByName(String nameProduct) {
+        try {
+            productRepository.findByName(nameProduct);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
 }

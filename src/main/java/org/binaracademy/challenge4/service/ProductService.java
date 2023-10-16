@@ -6,11 +6,10 @@ import org.springframework.data.domain.Page;
 
 public interface ProductService {
 
-    Boolean addNewProduct(Product product);
+    Boolean addNewProduct(Product product); // Auto generate id
     Page<Product> getAllProductPaged(int page);
-    Boolean submitNewProduct(Product product);
-    Boolean updateProductFromName(String oldProductName, String newProductName);
-    Boolean updateProductFromPrice(double oldProductPrice, double newProductPrice);
-    Boolean deleteProductFromName(String productName);
-    Boolean findByName(String nameProduct);
+    Boolean submitNewProduct(Product product); // id bisa diisi sendiri
+    void updateProductName(String oldProductName, String newProductName, String Id);
+    void updateProductPrice(String productCode, double newProductPrice, String Id);
+    void deleteProductFromId(Product product);
 }

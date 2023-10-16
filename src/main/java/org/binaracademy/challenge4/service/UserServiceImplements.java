@@ -42,42 +42,47 @@ public class UserServiceImplements implements UserService {
     }
 
     @Override
-    public Boolean updateUserFromUsername(String oldUsername, String newUsername) {
+    public void updateUserUsername(String oldUsername, String newUsername, String Id){
         try {
-            userRepository.editUsersFromUsername(oldUsername, newUsername);
-            return true;
-        } catch (Exception e) {
-            return false;
+            if (userRepository.existsById(Id)) {
+                userRepository.editUsersFromUsername(oldUsername, newUsername);
+            }
+        } catch (Exception e){
+            log.error("Error");
         }
     }
 
     @Override
-    public Boolean updateUserFromEmail(String oldEmail, String newEmail) {
-        try {
-            userRepository.editUsersFromEmail(oldEmail, newEmail);
-            return true;
-        } catch (Exception e) {
-            return false;
+    public void updateUserEmail(String oldEmail, String newEmail, String Id) {
+        try{
+            if (userRepository.existsById(Id)){
+                userRepository.editUsersFromEmail(oldEmail, newEmail);
+            }
+        } catch(Exception e){
+            log.error("Error");
         }
     }
 
     @Override
-    public Boolean updateUserFromPassword(String oldPassword, String newPassword) {
+    public void updateUserPassword(String oldPassword, String newPassword, String Id) {
         try {
-            userRepository.editUsersFromPassword(oldPassword, newPassword);
-            return true;
+            if (userRepository.existsById(Id)){
+                userRepository.editUsersFromPassword(oldPassword, newPassword);
+            }
         } catch (Exception e) {
-            return false;
+            log.error("Error");
         }
     }
 
     @Override
-    public Boolean deleteUserFromUsername(String userUsername) {
+    public void deleteUserFromID(Users users) {
         try {
-            userRepository.deleteUsersFromUsername(userUsername);
-            return true;
+            if (userRepository.existsById(users.getUserID())) {
+                userRepository.deleteById(users.getUserID());
+                log.info("Delete User Success");
+            }
         } catch (Exception e) {
-            return false;
+            log.error("Error");
         }
     }
 }

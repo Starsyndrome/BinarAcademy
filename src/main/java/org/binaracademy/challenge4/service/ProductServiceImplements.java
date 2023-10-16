@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-public class ProductServiceImplements implements ProductService{
+public class ProductServiceImplements implements ProductService {
 
     @Autowired
     ProductRepository productRepository;
@@ -27,7 +27,7 @@ public class ProductServiceImplements implements ProductService{
                     log.info("Produk berhasil ditambahkan dengan nama produk: {}", product.getProductName());
                     return isSuccess;
                 })
-                .orElseGet(()-> {
+                .orElseGet(() -> {
                     log.info("Produk gagal disimpan di database");
                     return Boolean.FALSE;
                 });
@@ -44,48 +44,42 @@ public class ProductServiceImplements implements ProductService{
             productRepository.submitNewProduct(product.getProductID(), product.getProductCode(),
                     product.getProductName(), product.getPrice());
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
 
     @Override
-    public Boolean updateProductFromName(String oldProductName, String newProductName) {
-        try{
-            productRepository.editNameProduct(oldProductName, newProductName);
-            return true;
-        }catch (Exception e){
-            return false;
-        }
-    }
-
-    @Override
-    public Boolean updateProductFromPrice(double oldProductPrice, double newProductPrice) {
-        try{
-            productRepository.editPriceProduct(oldProductPrice, newProductPrice);
-            return true;
-        }catch (Exception e){
-            return false;
-        }
-    }
-
-    @Override
-    public Boolean deleteProductFromName(String productName) {
-        try{
-            productRepository.deleteProductFromName(productName);
-            return true;
-        }catch (Exception e){
-            return false;
-        }
-    }
-
-    @Override
-    public Boolean findByName(String nameProduct) {
+    public void updateProductName(String oldProductName, String newProductName, String Id) {
         try {
-            productRepository.findByName(nameProduct);
-            return true;
-        }catch (Exception e){
-            return false;
+            if (productRepository.existsById(Id)) {
+                productRepository.editNameProduct(oldProductName, newProductName);
+            }
+        } catch (Exception e){
+                log.error("Error");
+        }
+    }
+
+    @Override
+    public void updateProductPrice(String productCode, double newProductPrice, String Id) {
+        try{
+            if (productRepository.existsById(Id)) {
+            productRepository.editPriceProduct(newProductPrice, productCode);
+            }
+        } catch (Exception e) {
+            log.error("Error");
+        }
+    }
+
+    @Override
+    public void deleteProductFromId(Product product) {
+        try {
+            if (productRepository.existsById(product.getProductID())) {
+                productRepository.deleteById(product.getProductID());
+                log.info("Delete Product Success!");
+            }
+        } catch (Exception e) {
+            log.error("Error");
         }
     }
 }

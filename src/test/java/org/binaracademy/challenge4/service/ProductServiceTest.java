@@ -31,8 +31,47 @@ public class ProductServiceTest {
     }
 
     @Test
+    void addNewProduct_Test(){
+        productService.addNewProduct(Product.builder()
+                        .productCode("TestCode")
+                        .productName("Testingg")
+                        .price(0)
+                        .merchant(null)
+                .build());
+    }
+
+    @Test
+    void submitNewProduct_Test(){
+        productService.submitNewProduct(Product.builder()
+                        .productID("TestId")
+                        .productCode("Code")
+                        .productName("Testing")
+                        .price(0)
+                .build());
+    }
+
+    @Test
     void totalElement(){
         Page<Product> productPage = productService.getAllProductPaged(0);
         Assertions.assertEquals(8, productPage.getTotalElements());
+    }
+
+    @Test
+    void updateProductName_Test(){
+        productService.updateProductName("Product Testing 1", "Product Testing",
+                "b8aeb5e5-40d1-4e0f-8895-4e2a24e0a3c4");
+    }
+
+    @Test
+    void updateProductPrice_Test(){
+        productService.updateProductPrice("PC1", 10000,
+                "b8aeb5e5-40d1-4e0f-8895-4e2a24e0a3c4");
+    }
+
+    @Test
+    void deleteProductFromId(){
+        productService.deleteProductFromId(Product.builder()
+                        .productID("dc826bcd-0ef6-4322-acd1-51fdb5a5a149")
+                .build());
     }
 }

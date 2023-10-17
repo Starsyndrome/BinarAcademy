@@ -21,9 +21,9 @@ public class ProductServiceTest {
     @Test
     void submitNewProductTest(){
         Product product = Product.builder()
-                .productCode("PC2")
-                .productName("Product Testing 2")
-                .price(11000)
+                .productCode("PC1")
+                .productName("Product Testing")
+                .price(10000)
                 .merchant(null)
                 .build();
         productRepository.save(product);
@@ -58,20 +58,20 @@ public class ProductServiceTest {
 
     @Test
     void updateProductName_Test(){
-        productService.updateProductName("Product Testing 1", "Product Testing",
-                "b8aeb5e5-40d1-4e0f-8895-4e2a24e0a3c4");
+        productService.updateProductName("Product Testing", "Product Testing Success",
+                "5226191c-1d11-41f0-9bc0-e01e24fce780");
     }
 
     @Test
     void updateProductPrice_Test(){
-        productService.updateProductPrice("PC1", 10000,
-                "b8aeb5e5-40d1-4e0f-8895-4e2a24e0a3c4");
+        productService.updateProductPrice("PC1", 99999,
+                "5226191c-1d11-41f0-9bc0-e01e24fce780");
     }
 
     @Test
     void deleteProductFromId(){
         productService.deleteProductFromId(Product.builder()
-                        .productID("3f19893e-c81d-4d2f-8e50-ab30ef82247c")
+                        .productID("5226191c-1d11-41f0-9bc0-e01e24fce780")
                 .build());
     }
 }

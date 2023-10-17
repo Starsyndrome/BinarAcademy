@@ -19,8 +19,8 @@ public interface MerchantRepository extends JpaRepository<Merchant, String> {
                               @Param("merchantName") String merchantName, @Param("merchantLocation") String merchantLocation,
                               @Param("merchantOpen") Boolean merchantOpen);
 
-    @Query(nativeQuery = true, value = "update merchant set merchant_open = :newStatus where merchant_open = :oldStatus")
-    void editOpenMerchant (@Param("oldStatus") Boolean oldStatus, @Param("newStatus") Boolean newStatus);
+    @Query(nativeQuery = true, value = "update merchant set merchant_open = :newStatus where merchant_code = :codeMerchant")
+    void editOpenMerchant (@Param("codeMerchant") String codeMerchant, @Param("newStatus") Boolean newStatus);
 
 
     @Query(nativeQuery = true, value = "select * from merchant where merchant_open = :status")

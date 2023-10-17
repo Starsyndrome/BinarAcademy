@@ -1,7 +1,6 @@
 package org.binaracademy.challenge4.service;
 
 import org.binaracademy.challenge4.model.Merchant;
-import org.binaracademy.challenge4.repository.MerchantRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ public class MerchantServiceTest {
                         .merchantName("Merchant Test")
                         .merchantCode("KDMT")
                         .merchantLocation("Earth")
-                        .open(true)
+                        .open(Boolean.FALSE)
                 .build());
     }
 
@@ -30,7 +29,7 @@ public class MerchantServiceTest {
 
     @Test
     void editStatusMerchant_Test(){
-        merchantService.editStatusMerchant(false, true,
+        merchantService.editStatusMerchant("SEFD", Boolean.TRUE,
                 "a06d6802-a1dd-4500-b8f6-9ecc4252fb1c");
     }
 }

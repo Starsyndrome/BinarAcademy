@@ -22,7 +22,4 @@ public interface UserRepository extends JpaRepository<Users, String> {
 
     @Query(nativeQuery = true, value = "update users set password = :newPassword where password = :oldPassword")
     void editUsersFromPassword(@Param("oldPassword") String oldPassword, @Param("newPassword") String newPassword);
-
-    @Query(nativeQuery = true, value = "delete from users where userid = :user_ID")
-    void deleteUsersFromID(@Param("user_ID") String ID);
 }

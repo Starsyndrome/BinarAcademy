@@ -60,10 +60,10 @@ public class MerchantServiceImplements implements MerchantService{
 //    }
 
     @Override
-    public void editStatusMerchant(Boolean oldStatus, Boolean newStatus, String Id) {
+    public void editStatusMerchant(String codeMerchant, Boolean newStatus, String Id) {
         try {
             if (merchantRepository.existsById(Id)) {
-                merchantRepository.editOpenMerchant(oldStatus, newStatus);
+                merchantRepository.editOpenMerchant(codeMerchant, newStatus);
             }
         } catch (Exception e) {
             log.error("Error");

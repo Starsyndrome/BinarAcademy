@@ -71,7 +71,7 @@ public class ProductServiceTest {
     @Test
     void deleteProductFromId(){
         productService.deleteProductFromId(Product.builder()
-                        .productID("081e914c-40b4-4ca3-8a0c-bb9f85afed00")
+                        .productID("3f19893e-c81d-4d2f-8e50-ab30ef82247c")
                 .build());
     }
 }

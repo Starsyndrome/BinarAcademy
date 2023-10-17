@@ -23,7 +23,7 @@ public class ProductServiceTest {
         Product product = Product.builder()
                 .productCode("PC2")
                 .productName("Product Testing 2")
-                .price(0)
+                .price(11000)
                 .merchant(null)
                 .build();
         productRepository.save(product);
@@ -71,7 +71,7 @@ public class ProductServiceTest {
     @Test
     void deleteProductFromId(){
         productService.deleteProductFromId(Product.builder()
-                        .productID("dc826bcd-0ef6-4322-acd1-51fdb5a5a149")
+                        .productID("081e914c-40b4-4ca3-8a0c-bb9f85afed00")
                 .build());
     }
 }

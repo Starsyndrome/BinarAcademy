@@ -24,5 +24,5 @@ public interface MerchantRepository extends JpaRepository<Merchant, String> {
 
 
     @Query(nativeQuery = true, value = "select * from merchant where merchant_open = :status")
-    void showMerchantOpen(@Param("status") Boolean statusMerch);
+    Boolean showMerchantOpen(@Param("status") Boolean statusMerch);
 }

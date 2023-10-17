@@ -8,5 +8,5 @@ public interface MerchantService {
     Page<Merchant> getAllMerchantPaged(int page);
     Boolean showMerchantOpen(Boolean statusMerchant);
 //    Boolean submitNewMerchant(Merchant merchant);
-    Boolean editStatusMerchant(Boolean oldStatus, Boolean newStatus);
+    void editStatusMerchant(Boolean oldStatus, Boolean newStatus, String Id);
 }

@@ -79,7 +79,7 @@ public class UserServiceImplements implements UserService {
         try {
             if (userRepository.existsById(users.getUserID())) {
                 userRepository.deleteById(users.getUserID());
-                log.info("Delete User Success");
+                log.info("Successfully deleted user by ID: {}", users.getUserID());
             }
         } catch (Exception e) {
             log.error("Error");

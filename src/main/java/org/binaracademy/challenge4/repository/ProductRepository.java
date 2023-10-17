@@ -27,6 +27,5 @@ public interface ProductRepository extends JpaRepository<Product, String> {
     @Query(nativeQuery = true, value = "delete from product where product_name = :productId")
     void deleteProductFromId(@Param("productId") String productId);
 
-    @Query(nativeQuery = true, value = "select * from product where product_name = :nameProduct")
-    void findByName(@Param("nameProduct") String nameProduct);
+    Product findByName(String nameProduct);
 }

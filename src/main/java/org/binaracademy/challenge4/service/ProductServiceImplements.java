@@ -73,10 +73,11 @@ public class ProductServiceImplements implements ProductService {
 
     @Override
     public void deleteProductFromId(Product product) {
+        log.debug("Processing delete user from Id");
         try {
             if (productRepository.existsById(product.getProductID())) {
                 productRepository.deleteById(product.getProductID());
-                log.info("Delete Product Success!");
+                log.info("Successfully deleted product with ID: {}", product.getProductID());
             }
         } catch (Exception e) {
             log.error("Error");

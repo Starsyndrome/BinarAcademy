@@ -35,12 +35,14 @@ public class ProductServiceImplements implements ProductService {
 
     @Override
     public Page<Product> getAllProductPaged(int page) {
+        log.info("Success get all product!");
         return productRepository.getAllProduct(PageRequest.of(page, 3));
     }
 
     @Override
     public Boolean submitNewProduct(Product product) {
         try {
+            log.info("Submit new product success with name: {}", product.getProductName());
             productRepository.submitNewProduct(product.getProductID(), product.getProductCode(),
                     product.getProductName(), product.getPrice());
             return true;

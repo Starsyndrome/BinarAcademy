@@ -6,13 +6,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 public class MerchantServiceTest {
     @Autowired
     MerchantService merchantService;
 
     @Test
-    void addNewMerchant_Test(){
+    void addNewMerchant_Test(){ // auto generate id
         merchantService.addnewMerchant(Merchant.builder()
                         .merchantName("Merchant Test")
                         .merchantCode("KDMT")
@@ -22,9 +24,20 @@ public class MerchantServiceTest {
     }
 
     @Test
-        // Bingung ngetestnya :(
-    void showMerchantOpen(){
-        Assertions.assertFalse(merchantService.showMerchantOpen(true));
+    void submitNewMerchant_Test(){ // id bisa diisi sendiri
+        merchantService.submitNewMerchant(Merchant.builder()
+                        .merchantID("123TestMerchantId")
+                        .merchantCode("CodeMerchant")
+                        .merchantName("Test Merchant")
+                        .merchantLocation("Jakarta")
+                        .open(false)
+                .build());
+    }
+
+    @Test
+    void showMerchantOpen_Test(){
+        List<Merchant> merchants = merchantService.showMerchantOpen();
+        Assertions.assertEquals(5, merchants.size());
     }
 
     @Test

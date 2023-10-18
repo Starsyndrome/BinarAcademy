@@ -36,4 +36,8 @@ public class Order implements Serializable{
 
     @Column(name = "completed")
     private Boolean completed;
+
+    @ManyToOne
+    @JoinColumn(name = "orderDetail_id")
+    private OrderDetail orderDetail;
 }

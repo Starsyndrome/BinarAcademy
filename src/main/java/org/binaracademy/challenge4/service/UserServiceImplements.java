@@ -33,6 +33,7 @@ public class UserServiceImplements implements UserService {
     @Override
     public Boolean submitNewUser(Users users) {
         try {
+            log.info("Submit new user success with username: {}", users.getUsername());
             userRepository.submitNewUser(users.getUserID(), users.getUsername(),
                     users.getEmailAddress(), users.getPassword());
             return true;

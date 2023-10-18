@@ -15,23 +15,9 @@ import org.springframework.data.domain.Page;
 public class ProductServiceTest {
     @Autowired
     ProductService productService;
-    @Autowired
-    ProductRepository productRepository;
 
     @Test
-    void submitNewProductTest(){
-        Product product = Product.builder()
-                .productCode("PC1")
-                .productName("Product Testing")
-                .price(10000)
-                .merchant(null)
-                .build();
-        productRepository.save(product);
-        log.info("Add & save product berhasil");
-    }
-
-    @Test
-    void addNewProduct_Test(){
+    void addNewProduct_Test(){ // id auto generate
         productService.addNewProduct(Product.builder()
                         .productCode("TestCode")
                         .productName("Testingg")
@@ -41,7 +27,7 @@ public class ProductServiceTest {
     }
 
     @Test
-    void submitNewProduct_Test(){
+    void submitNewProduct_Test(){ // id bisa diisi sendiri
         productService.submitNewProduct(Product.builder()
                         .productID("TestId")
                         .productCode("Code")

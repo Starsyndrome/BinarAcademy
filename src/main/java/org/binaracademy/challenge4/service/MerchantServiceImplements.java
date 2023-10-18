@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -35,29 +36,27 @@ public class MerchantServiceImplements implements MerchantService{
 
     @Override
     public Page<Merchant> getAllMerchantPaged(int page) {
+        log.info("Success get all data in merchant!");
         return merchantRepository.getAllMerchant(PageRequest.of(page, 3));
     }
 
     @Override
-    public Boolean showMerchantOpen(Boolean statusMerchant) {
+    public List<Merchant> showMerchantOpen() {
+        log.info("Success get data merchant where merchant open!");
+        return merchantRepository.showMerchantOpen();
+    }
+
+    @Override
+    public Boolean submitNewMerchant(Merchant merchant) {
         try {
-            merchantRepository.showMerchantOpen(statusMerchant);
+            log.info("Success add new merchant with merchant name: {}", merchant.getMerchantName());
+            merchantRepository.submitNewMerchant(merchant.getMerchantID(), merchant.getMerchantCode(),
+                    merchant.getMerchantName(), merchant.getMerchantLocation(), merchant.getOpen());
             return true;
         }catch (Exception e){
             return false;
         }
     }
-
-//    @Override
-//    public Boolean submitNewMerchant(Merchant merchant) {
-//        try {
-//            merchantRepository.submitNewMerchant(merchant.getMerchantID(), merchant.getMerchantCode(),
-//                    merchant.getMerchantName(), merchant.getMerchantLocation(), merchant.getOpen());
-//            return true;
-//        }catch (Exception e){
-//            return false;
-//        }
-//    }
 
     @Override
     public void editStatusMerchant(String codeMerchant, Boolean newStatus, String Id) {

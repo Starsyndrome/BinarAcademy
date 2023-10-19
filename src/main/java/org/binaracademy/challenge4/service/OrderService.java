@@ -1,8 +1,13 @@
 package org.binaracademy.challenge4.service;
 
+import org.binaracademy.challenge4.model.Order;
 import org.binaracademy.challenge4.model.OrderDetail;
+import org.binaracademy.challenge4.model.response.OrderResponse;
 
-// Terutama untuk logic order, kayak belum masuk aja gitu tiba-tiba ngerjain logic order yang complex
+import java.util.List;
+
 public interface OrderService {
-    Boolean newOrder(OrderDetail orderDetail);
+    void addNewOrder(Order order); // auto generate id
+    void addNewOrderDetail(OrderDetail orderDetail); // auto generate id
+    List<OrderResponse> getAllOrder();
 }

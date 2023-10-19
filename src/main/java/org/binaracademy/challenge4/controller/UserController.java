@@ -1,31 +1,12 @@
 package org.binaracademy.challenge4.controller;
 
-import org.binaracademy.challenge4.model.Users;
-import org.binaracademy.challenge4.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Scanner;
-
-@Component
+@CrossOrigin("*")
+@RestController
+@Slf4j
 public class UserController {
-    @Autowired
-    UserService userService;
-    private Scanner scanner = new Scanner(System.in);
 
-    public void addUser(){
-        System.out.print("Email: ");
-        String emailAddress = scanner.nextLine();
-        System.out.print("Username: ");
-        String addUsername = scanner.nextLine();
-        System.out.print("Password: ");
-        String addPassword = scanner.nextLine();
-
-        Users users = Users.builder()
-                .emailAddress(emailAddress)
-                .username(addUsername)
-                .password(addPassword)
-                .build();
-        userService.addNewUsers(users);
-    }
 }

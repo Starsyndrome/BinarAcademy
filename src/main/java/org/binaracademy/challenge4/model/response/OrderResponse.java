@@ -10,9 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderResponse {
-    // Ini jugaa gatau kak bener apa ngga :((((
     private String productName;
     private Integer productPrice;
     private Integer quantity;
-    private Integer totalPrice;
+    private Double totalPrice;
 }

@@ -9,6 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder
@@ -37,7 +38,6 @@ public class Order implements Serializable{
     @Column(name = "completed")
     private Boolean completed;
 
-    @ManyToOne
-    @JoinColumn(name = "orderDetail_id")
-    private OrderDetail orderDetail;
+    @OneToMany(mappedBy = "order")
+    private List<OrderDetail> orderDetail;
 }

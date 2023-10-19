@@ -13,9 +13,9 @@ public class UserServiceTest {
     @Test
     void addNewUser_Test(){ // id auto generate
         userService.addNewUsers(Users.builder()
-                        .username("User Test")
-                        .emailAddress("usertest99@gmail.com")
-                        .password("testingtesting")
+                        .username("Alfarizki")
+                        .emailAddress("alfarizki09@gmail.com")
+                        .password("112233")
                 .build());
     }
 
@@ -32,25 +32,25 @@ public class UserServiceTest {
     @Test
     void deleteUser_Test() {
         userService.deleteUserFromID(Users.builder()
-                        .userID("f645193e-1ac0-401c-92d1-f422f4aaccbb")
+                        .userID("ec4113e0-56d5-48dc-9402-df5ec5c2e4ac")
                 .build());
     }
 
     @Test
     void updateUserPassword_Test(){
-        userService.updateUserPassword("testingtesting", "testing2x",
-                "f645193e-1ac0-401c-92d1-f422f4aaccbb");
+        userService.updateUserPassword("112233", "299904",
+                "7d912a1d-b974-4526-8a1b-0bd959585922");
     }
 
     @Test
     void updateUserUsername_Test() {
-        userService.updateUserUsername("User Test", "User Test Success",
-                "f645193e-1ac0-401c-92d1-f422f4aaccbb");
+        userService.updateUserUsername("Alfarizki", "Starsyndrome",
+                "7d912a1d-b974-4526-8a1b-0bd959585922");
     }
 
     @Test
     void updateUserEmail_Test(){
-        userService.updateUserEmail("usertest123@gmail.com", "usertest@gmail.com",
-                "ec4113e0-56d5-48dc-9402-df5ec5c2e4ac");
+        userService.updateUserEmail("alfarizki09@gmail.com", "alfarizki@gmail.com",
+                "7d912a1d-b974-4526-8a1b-0bd959585922");
     }
 }

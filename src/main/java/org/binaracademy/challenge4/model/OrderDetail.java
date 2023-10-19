@@ -35,5 +35,5 @@ public class OrderDetail implements Serializable {
     private Integer qty;
 
     @Column(name = "total_price")
-    private Integer totalPrice;
+    private Double totalPrice;
 }

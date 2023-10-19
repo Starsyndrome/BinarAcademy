@@ -44,7 +44,7 @@ public class ProductServiceImplements implements ProductService {
         try {
             log.info("Submit new product success with name: {}", product.getProductName());
             productRepository.submitNewProduct(product.getProductID(), product.getProductCode(),
-                    product.getProductName(), product.getPrice());
+                    product.getProductName(), product.getPrice(), product.getMerchant());
             return true;
         } catch (Exception e) {
             return false;

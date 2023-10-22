@@ -1,10 +1,10 @@
 package org.binaracademy.challenge4.service;
 
 import org.binaracademy.challenge4.model.Order;
-import org.binaracademy.challenge4.model.OrderDetail;
+import org.binaracademy.challenge4.model.OrderDetails;
 import org.binaracademy.challenge4.model.Product;
 import org.binaracademy.challenge4.model.Users;
-import org.binaracademy.challenge4.model.response.OrderResponse;
+import org.binaracademy.challenge4.model.response.OrderDetailResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class OrderServiceTest {
 
     @Test
     void newOrderDetail_Test(){
-        orderService.addNewOrderDetail(OrderDetail.builder()
+        orderService.addNewOrderDetail(OrderDetails.builder()
                         .product(Product.builder()
                                 .productID("91e72758-28f1-4f7a-8246-23174ef093d3")
                                 .build())
@@ -46,7 +46,7 @@ public class OrderServiceTest {
 
     @Test
     void getAllOrder(){
-        List<OrderResponse> orderResponses = orderService.getAllOrder();
+        List<OrderDetailResponse> orderResponses = orderService.getAllOrder();
         Assertions.assertEquals(2, orderResponses.size());
     }
 }

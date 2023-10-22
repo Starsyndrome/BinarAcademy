@@ -16,60 +16,44 @@ public class UserServiceImplements implements UserService {
     UserRepository userRepository;
 
     @Override
-    public Boolean addNewUsers(Users users) {
-        return Optional.ofNullable(users)
+    public void addNewUsers(Users users) {
+        log.info("Process add new user");
+        Optional.ofNullable(users)
                 .map(users1 -> userRepository.save(users))
                 .map(result -> {
                     boolean isSuccess = true;
-                    log.info("Berhasil menambahkan user ke database dengan username: {}", users.getUsername());
+                    log.info("Successfully added user with username: {}", users.getUsername());
                     return isSuccess;
                 })
                 .orElseGet(() -> {
-                    log.info("Gagal menambahkan user dan data tidak terinput ke database");
+                    log.info("Failed to add new user");
                     return Boolean.FALSE;
                 });
+        log.info("Successfully add new user!");
     }
 
     @Override
-    public Boolean submitNewUser(Users users) {
+    public void updateUserUsername(String newUsername, String oldUsername){
         try {
-            log.info("Submit new user success with username: {}", users.getUsername());
-            userRepository.submitNewUser(users.getUserID(), users.getUsername(),
-                    users.getEmailAddress(), users.getPassword());
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    @Override
-    public void updateUserUsername(String oldUsername, String newUsername, String Id){
-        try {
-            if (userRepository.existsById(Id)) {
-                userRepository.editUsersFromUsername(oldUsername, newUsername);
-            }
+            userRepository.editUsersFromUsername(newUsername, oldUsername);
         } catch (Exception e){
             log.error("Error");
         }
     }
 
     @Override
-    public void updateUserEmail(String oldEmail, String newEmail, String Id) {
+    public void updateUserEmail(String newEmail, String oldEmail) {
         try{
-            if (userRepository.existsById(Id)){
-                userRepository.editUsersFromEmail(oldEmail, newEmail);
-            }
+            userRepository.editUsersFromEmail(newEmail, oldEmail);
         } catch(Exception e){
             log.error("Error");
         }
     }
 
     @Override
-    public void updateUserPassword(String oldPassword, String newPassword, String Id) {
+    public void updateUserPassword(String newPassword, String oldPassword) {
         try {
-            if (userRepository.existsById(Id)){
-                userRepository.editUsersFromPassword(oldPassword, newPassword);
-            }
+            userRepository.editUsersFromPassword(newPassword, oldPassword);
         } catch (Exception e) {
             log.error("Error");
         }
@@ -78,11 +62,19 @@ public class UserServiceImplements implements UserService {
     @Override
     public void deleteUserFromID(Users users) {
         try {
-            if (userRepository.existsById(users.getUserID())) {
-                userRepository.deleteById(users.getUserID());
-                log.info("Successfully deleted user by ID: {}", users.getUserID());
-            }
+            userRepository.deleteById(users.getUserID());
+            log.info("Successfully deleted user by ID: {}", users.getUserID());
         } catch (Exception e) {
+            log.error("Error");
+        }
+    }
+
+    @Override
+    public void deleteUserFromUsername(String username) {
+        try {
+            userRepository.deleteProductFromName(username);
+            log.info("Successfully deleted user!");
+        } catch (Exception e){
             log.error("Error");
         }
     }

@@ -39,5 +39,5 @@ public class Order implements Serializable{
     private Boolean completed;
 
     @OneToMany(mappedBy = "order")
-    private List<OrderDetail> orderDetail;
+    private List<OrderDetails> orderDetails;
 }

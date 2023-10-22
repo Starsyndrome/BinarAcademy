@@ -5,14 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderResponse {
-    private Date orderTime;
-    private String destinationAddress;
-    private Boolean complete;
+public class OrderDetail {
+    private String productName;
+    private Long quantity;
+    private String price;
 }

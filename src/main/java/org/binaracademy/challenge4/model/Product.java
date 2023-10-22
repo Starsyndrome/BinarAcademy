@@ -33,7 +33,7 @@ public class Product implements Serializable {
     private String productName;
 
     @Column(name = "product_price")
-    private Integer price;
+    private Double price;
 
     @ManyToOne
     @JoinColumn(name = "merchant_id")

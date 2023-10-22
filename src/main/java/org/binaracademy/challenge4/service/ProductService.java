@@ -1,15 +1,19 @@
 package org.binaracademy.challenge4.service;
 
 import org.binaracademy.challenge4.model.Product;
-import org.springframework.data.domain.Page;
+import org.binaracademy.challenge4.model.response.ProductResponse;
+
+import java.util.List;
 
 
 public interface ProductService {
-
-    Boolean addNewProduct(Product product); // Auto generate id
-    Page<Product> getAllProductPaged(int page);
-    Boolean submitNewProduct(Product product); // id bisa diisi sendiri
-    void updateProductName(String oldProductName, String newProductName, String Id);
-    void updateProductPrice(String productCode, double newProductPrice, String Id);
-    void deleteProductFromId(Product product);
+    ProductResponse getProductDetail(String selectedProduct);
+    List<ProductResponse> getAllProduct();
+    void addNewProduct(Product product); // Auto generate id
+//    void updateProductName(String oldProductName, String newProductName, String Id);
+    void updateProductName(String oldProductName, String newProductName);
+//    void updateProductPrice(String productCode, double newProductPrice, String Id);
+    void updateProductPrice(Double newProductPrice, String productCode);
+//    void deleteProductFromName(Product product);
+    void deleteProductFromName(String productName);
 }

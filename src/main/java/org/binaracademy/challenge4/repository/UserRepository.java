@@ -8,18 +8,15 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<Users, String> {
-
-    @Query(nativeQuery = true, value = "insert into users(userID, username, email_address, password) " +
-    "values(:userID, :username, :email_address, :password)")
-    void submitNewUser(@Param("userID") String userID, @Param("username") String username,
-                          @Param("email_address") String emailAddress, @Param("password") String password);
+    @Query(nativeQuery = true, value = "delete from users where username = :username")
+    void deleteProductFromName(@Param("username") String username);
 
     @Query(nativeQuery = true, value = "update users set username = :newUsername where username = :oldUsername")
-    void editUsersFromUsername(@Param("oldUsername") String oldUsername, @Param("newUsername") String newUsername);
+    void editUsersFromUsername(@Param("newUsername") String newUsername, @Param("oldUsername") String oldUsername);
 
     @Query(nativeQuery = true, value = "update users set email_address = :newEmail where email_address = :oldEmail")
-    void editUsersFromEmail(@Param("oldEmail") String oldEmail, @Param("newEmail") String newEmail);
+    void editUsersFromEmail(@Param("newEmail") String newEmail, @Param("oldEmail") String oldEmail);
 
     @Query(nativeQuery = true, value = "update users set password = :newPassword where password = :oldPassword")
-    void editUsersFromPassword(@Param("oldPassword") String oldPassword, @Param("newPassword") String newPassword);
+    void editUsersFromPassword(@Param("newPassword") String newPassword, @Param("oldPassword") String oldPassword);
 }

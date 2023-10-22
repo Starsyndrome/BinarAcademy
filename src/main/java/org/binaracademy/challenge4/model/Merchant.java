@@ -33,5 +33,5 @@ public class Merchant implements Serializable {
     private String merchantLocation;
 
     @Column(name = "merchant_open")
-    private Boolean open;
+     private Boolean open;
 }

@@ -18,31 +18,31 @@ public class OrderServiceTest {
     @Autowired
     OrderService orderService;
 
-    @Test
-    void newOrder_Test(){
-        orderService.addNewOrder(Order.builder()
-                .users(Users.builder()
-                        .userID("7d912a1d-b974-4526-8a1b-0bd959585922")
-                        .build())
-                .orderTime(new Date())
-                .destinationAddress("Bogor")
-                .completed(true)
-                .build());
-    }
+//    @Test
+//    void newOrder_Test(){
+//        orderService.addNewOrder(Order.builder()
+//                .users(Users.builder()
+//                        .userID("7d912a1d-b974-4526-8a1b-0bd959585922")
+//                        .build())
+//                .orderTime(new Date())
+//                .destinationAddress("Bogor")
+//                .completed(true)
+//                .build());
+//    }
 
-    @Test
-    void newOrderDetail_Test(){
-        orderService.addNewOrderDetail(OrderDetails.builder()
-                        .product(Product.builder()
-                                .productID("91e72758-28f1-4f7a-8246-23174ef093d3")
-                                .build())
-                        .order(Order.builder()
-                                .orderID("633ffc95-bf0e-496a-857e-d216024a6aa1")
-                                .build())
-                        .qty(1)
-                        .totalPrice(17000.0)
-                .build());
-    }
+//    @Test
+//    void newOrderDetail_Test(){
+//        orderService.addNewOrderDetail(OrderDetails.builder()
+//                        .product(Product.builder()
+//                                .productID("91e72758-28f1-4f7a-8246-23174ef093d3")
+//                                .build())
+//                        .order(Order.builder()
+//                                .orderID("633ffc95-bf0e-496a-857e-d216024a6aa1")
+//                                .build())
+//                        .qty(1)
+//                        .totalPrice(17000.0)
+//                .build());
+//    }
 
     @Test
     void getAllOrder(){

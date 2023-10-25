@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class Order implements Serializable{
 
     @ManyToOne
     @JoinColumn(name = "users_id")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Users users;
 
     @Column(name = "order_time")
@@ -39,5 +41,6 @@ public class Order implements Serializable{
     private Boolean completed;
 
     @OneToMany(mappedBy = "order")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<OrderDetails> orderDetails;
 }

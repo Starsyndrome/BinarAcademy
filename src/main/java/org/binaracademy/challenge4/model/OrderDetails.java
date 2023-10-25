@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -29,6 +30,7 @@ public class OrderDetails implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "order_id")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Order order;
 
     @Column(name = "quantity")

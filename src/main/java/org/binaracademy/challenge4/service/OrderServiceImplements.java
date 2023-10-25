@@ -28,35 +28,18 @@ public class OrderServiceImplements implements OrderService{
     OrderDetailRepository orderDetailRepository;
 
     /*
-    Bingung logic ordernya asli, tapi yang saya buat ini bisa sih, tapi dua kali insert,
-    dapetin order_id di method addNewOrder, lalu order_id-nya dibawa ke method getAllOrder.
-    Hard code gitu perhitungan totalPricenya, langsung aja dijumlahin sendiri wkwk.
+    Abis nyoba yang sekali insert data langsung masuk ke 2 table buat yang order, ya Allah banyak error,
+    Tapi akhirnya bisa Alhamdulillah, gatau juga sih kak logic ordernya saya input manual gitu bener apa
+    ngga, yang kayak quantity, total price
      */
     @Override
-    public void addNewOrder(Order order) { // id auto generate
-        log.info("Process add new order");
-        Optional.ofNullable(order)
-                .map(orders -> orderRepository.save(order))
-                .map(result -> {
-                    boolean isSuccess = true;
-                    log.info("Successfully order with order ID: {}", order.getOrderID());
-                    return isSuccess;
-                })
-                .orElseGet(() -> {
-                    log.info("Error");
-                    return Boolean.FALSE;
-                });
-        log.info("Successfully add new order!");
-    }
-
-    @Override
-    public void addNewOrderDetail(OrderDetails orderDetails) {
-        log.info("Process order");
+    public void addNewOrder(OrderDetails orderDetails) {
+        log.info("Processing order");
         Optional.ofNullable(orderDetails)
                 .map(orders -> orderDetailRepository.save(orderDetails))
                 .map(result -> {
                     boolean isSuccess = true;
-                    log.info("Successfully order, thanks!");
+                    log.info("Order success with username {}", orderDetails.getOrder().getUsers().getUsername());
                     return isSuccess;
                 })
                 .orElseGet(() -> {

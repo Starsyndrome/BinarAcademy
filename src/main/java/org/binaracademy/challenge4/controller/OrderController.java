@@ -20,17 +20,12 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
-    @PostMapping(value = "/newOrder", consumes = "application/json")
-    public ResponseEntity addNewOrder(@RequestBody Order order){
-        orderService.addNewOrder(order);
-        return ResponseEntity.ok("Add new order with username: " +
-                order.getUsers().getUsername()+ " successfully!");
-    }
 
-    @PostMapping(value = "/newOrderDetail", consumes = "application/json")
-    public ResponseEntity addNewOrderDetail(@RequestBody OrderDetails orderDetails){
-        orderService.addNewOrderDetail(orderDetails);
-        return ResponseEntity.ok("Successfully order!");
+    @PostMapping(value = "/newOrder", consumes = "application/json")
+    public ResponseEntity addNewOrder(@RequestBody OrderDetails orderDetails){
+        orderService.addNewOrder(orderDetails);
+        return ResponseEntity.ok("Successfully order with username "+ orderDetails.getOrder()
+                .getUsers().getUsername() + "!");
     }
 
     @GetMapping(value = "/getAllOrderDetail", produces = "application/json")

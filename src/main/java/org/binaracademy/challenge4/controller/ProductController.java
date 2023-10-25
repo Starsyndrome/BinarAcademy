@@ -30,33 +30,36 @@ public class ProductController {
     }
 
     @PostMapping(value = "/addProduct", consumes = "application/json")
-    public String addNewProduct(@RequestBody Product product){
+    public ResponseEntity addNewProduct(@RequestBody Product product){
         productService.addNewProduct(product);
-        return "Add new product with product name: " + product.getProductName() + " successfully!";
+        return ResponseEntity.ok("Add new product with product name: " +
+                product.getProductName() + " successfully!");
     }
 
     @PutMapping(value = "/updateProductName/{productName}")
     @Operation(summary = "Update Product Name with Product Name")
-    public String updateProductName(@RequestParam("newProductName") String newProductName,
+    public ResponseEntity updateProductName(@RequestParam("newProductName") String newProductName,
                                     @PathVariable("productName") String oldProductName,
                                     @RequestBody ProductResponse productResponse){
         productService.updateProductName(oldProductName,newProductName);
-        return "Update product name successfully, new product name: " + newProductName;
+        return ResponseEntity.ok("Update product name successfully, new product name: " +
+                newProductName);
     }
 
     @PutMapping(value = "/updateProductPrice/{productCode}")
     @Operation(summary = "Update Product Price with Product Code")
-    public String updateProductPrice(@RequestParam("newProductPrice") Double newProductPrice,
+    public ResponseEntity updateProductPrice(@RequestParam("newProductPrice") Double newProductPrice,
                                      @PathVariable("productCode") String productCode,
                                      @RequestBody ProductResponse productResponse){
         productService.updateProductPrice(newProductPrice, productCode);
-        return "Update product price successfully, new product price: " + newProductPrice;
+        return ResponseEntity.ok("Update product price successfully, new product price: " +
+                newProductPrice);
     }
 
     @DeleteMapping(value = "/deleteProduct/{productName}")
-    public String deleteProductFromName(@PathVariable("productName") String productName){
+    public ResponseEntity deleteProductFromName(@PathVariable("productName") String productName){
         productService.deleteProductFromName(productName);
-        return "Product with name: " + productName + " successfully deleted";
+        return ResponseEntity.ok("Product with name: " + productName + " successfully deleted");
     }
 
     @GetMapping(value = "/getProductDetail")

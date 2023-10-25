@@ -51,9 +51,9 @@ public class UserServiceImplements implements UserService {
     }
 
     @Override
-    public void updateUserPassword(String newPassword, String oldPassword) {
+    public void updateUserPassword(String newPassword, String username) {
         try {
-            userRepository.editUsersFromPassword(newPassword, oldPassword);
+            userRepository.editUsersFromPassword(newPassword, username);
         } catch (Exception e) {
             log.error("Error");
         }

@@ -1,14 +1,12 @@
 package org.binaracademy.challenge4.service;
 
 import org.binaracademy.challenge4.model.Merchant;
-import org.binaracademy.challenge4.model.Product;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 
-import java.util.List;
 
 @SpringBootTest
 public class MerchantServiceTest {

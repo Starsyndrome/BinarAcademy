@@ -1,7 +1,6 @@
  package org.binaracademy.challenge4.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.binaracademy.challenge4.model.Order;
 import org.binaracademy.challenge4.model.OrderDetails;
 import org.binaracademy.challenge4.model.response.OrderDetailResponse;
 import org.binaracademy.challenge4.model.response.OrderResponse;

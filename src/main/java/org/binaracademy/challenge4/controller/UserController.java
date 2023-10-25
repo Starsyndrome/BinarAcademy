@@ -1,8 +1,6 @@
 package org.binaracademy.challenge4.controller;
 
-import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
-import org.binaracademy.challenge4.model.Product;
 import org.binaracademy.challenge4.model.Users;
 import org.binaracademy.challenge4.model.response.UserResponse;
 import org.binaracademy.challenge4.service.UserService;

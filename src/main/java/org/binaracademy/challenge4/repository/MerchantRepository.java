@@ -13,10 +13,13 @@ import java.util.List;
 @Repository
 public interface MerchantRepository extends JpaRepository<Merchant, String> {
     Merchant findByMerchantName(String merchantName);
+
     @Query(nativeQuery = true, value = "select * from merchant")
     Page<Merchant> getAllMerchant(Pageable pageable);
+
     @Query(nativeQuery = true, value = "update merchant set merchant_open = :newStatus where merchant_code = :codeMerchant")
     void editOpenMerchant(@Param("codeMerchant") String codeMerchant, @Param("newStatus") Boolean newStatus);
+
     @Query(nativeQuery = true, value = "select * from merchant where merchant_open = true")
     List<Merchant> showMerchantOpen();
 }

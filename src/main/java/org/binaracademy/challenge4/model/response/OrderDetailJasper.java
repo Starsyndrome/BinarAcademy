@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderDetail {
+public class OrderDetailJasper {
     private String productName;
     private Long quantity;
     private String price;

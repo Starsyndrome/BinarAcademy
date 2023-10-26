@@ -1,7 +1,7 @@
 package org.binaracademy.challenge4.service;
 
 import org.binaracademy.challenge4.model.Order;
-import org.binaracademy.challenge4.model.OrderDetails;
+import org.binaracademy.challenge4.model.OrderDetail;
 import org.binaracademy.challenge4.model.Product;
 import org.binaracademy.challenge4.model.Users;
 import org.binaracademy.challenge4.model.response.OrderDetailResponse;
@@ -20,7 +20,7 @@ public class OrderServiceTest {
 
     @Test
     void newOrder_Test(){
-        orderService.addNewOrder(OrderDetails.builder()
+        orderService.addNewOrder(OrderDetail.builder()
                         .product(Product.builder()
                                 .productID("91e72758-28f1-4f7a-8246-23174ef093d3")
                                 .build())

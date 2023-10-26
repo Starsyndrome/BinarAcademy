@@ -3,7 +3,7 @@ package org.binaracademy.challenge4.service;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import org.binaracademy.challenge4.model.response.OrderDetail;
+import org.binaracademy.challenge4.model.response.OrderDetailJasper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
@@ -22,21 +22,23 @@ public class InvoiceServiceImplements implements InvoiceService{
      */
     @Override
     public byte[] generateInvoice(String username) throws FileNotFoundException, JRException {
-        log.info("Generating invoice for:  {}", username);
-        List<OrderDetail> orderDetails = Arrays.asList(
-                OrderDetail.builder().productName("Cappuccino").price("Rp. 20.000").quantity(2L).build(),
-                OrderDetail.builder().productName("Croissant").price("Rp. 17.000").quantity(1L).build(),
-                OrderDetail.builder().productName("Red Velvet").price("Rp. 20.000").quantity(1L).build()
+        log.info("Generating invoice for: {}", username);
+        List<OrderDetailJasper> orderDetailJaspers = Arrays.asList(
+                OrderDetailJasper.builder().productName("Cappuccino").price("Rp. 20.000").quantity(2L).build(),
+                OrderDetailJasper.builder().productName("Croissant").price("Rp. 17.000").quantity(1L).build(),
+                OrderDetailJasper.builder().productName("Red Velvet").price("Rp. 20.000").quantity(1L).build(),
+                OrderDetailJasper.builder().productName("Lemon Tea").price("Rp. 12.000").quantity(5L).build(),
+                OrderDetailJasper.builder().productName("Croissant").price("Rp. 17.000").quantity(2L).build()
         );
 
         Map<String, Object> parameterMap = new HashMap<>();
         parameterMap.put("username", username);
-        parameterMap.put("finalPrice", "Rp. 77.000");
-        parameterMap.put("orderDetail", orderDetails);
+        parameterMap.put("finalPrice", "Rp. 171.000");
+        parameterMap.put("orderDetailJasper", orderDetailJaspers);
         JasperPrint invoice = JasperFillManager.fillReport(
                 JasperCompileManager.compileReport(ResourceUtils.getFile("classpath:invoice_v2.jrxml").getAbsolutePath()),
                 parameterMap,
-                new JRBeanCollectionDataSource(orderDetails)
+                new JRBeanCollectionDataSource(orderDetailJaspers)
         );
 
         return JasperExportManager.exportReportToPdf(invoice);

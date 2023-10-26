@@ -20,7 +20,7 @@
             <bottomPen lineWidth="0.5" lineColor="rgba(0, 0, 0, 0.003921569)"/>
         </box>
     </style>
-    <subDataset name="orderDetail" uuid="78706c4a-039a-4810-b657-1b5710af4423">
+    <subDataset name="orderDetailJasper" uuid="78706c4a-039a-4810-b657-1b5710af4423">
         <queryString>
             <![CDATA[]]>
         </queryString>
@@ -30,7 +30,7 @@
     </subDataset>
     <parameter name="username" class="java.lang.String"/>
     <parameter name="finalPrice" class="java.lang.String"/>
-    <parameter name="orderDetail" class="java.util.List"/>
+    <parameter name="orderDetailJasper" class="java.util.List"/>
     <queryString>
         <![CDATA[]]>
     </queryString>
@@ -66,8 +66,8 @@
                     <property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
                 </reportElement>
                 <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-                    <datasetRun subDataset="orderDetail" uuid="afdfcbed-5f51-4644-ad5f-13a47021d82b">
-                        <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{orderDetail})]]></dataSourceExpression>
+                    <datasetRun subDataset="orderDetailJasper" uuid="afdfcbed-5f51-4644-ad5f-13a47021d82b">
+                        <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{orderDetailJasper})]]></dataSourceExpression>
                     </datasetRun>
                     <jr:column width="260" uuid="3c382b2a-8eca-4dbe-b91a-989daa069833">
                         <jr:detailCell style="Table_TD" height="30">

@@ -42,5 +42,5 @@ public class Order implements Serializable{
 
     @OneToMany(mappedBy = "order")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private List<OrderDetails> orderDetails;
+    private List<OrderDetail> orderDetails;
 }

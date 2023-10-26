@@ -1,7 +1,7 @@
 package org.binaracademy.challenge4.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.binaracademy.challenge4.model.OrderDetails;
+import org.binaracademy.challenge4.model.OrderDetail;
 import org.binaracademy.challenge4.model.response.OrderDetailResponse;
 import org.binaracademy.challenge4.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +26,13 @@ public class OrderController {
      */
 
     @PostMapping(value = "/newOrder", consumes = "application/json")
-    public ResponseEntity addNewOrder(@RequestBody OrderDetails orderDetails){
-        orderService.addNewOrder(orderDetails);
-        return ResponseEntity.ok("Successfully order with username "+ orderDetails.getOrder()
+    public ResponseEntity addNewOrder(@RequestBody OrderDetail orderDetail){
+        orderService.addNewOrder(orderDetail);
+        return ResponseEntity.ok("Successfully order with username "+ orderDetail.getOrder()
                 .getUsers().getUsername() + "!");
     }
 
-    @GetMapping(value = "/getAllOrderDetail", produces = "application/json")
+    @GetMapping(value = "/getAllOrder", produces = "application/json")
     public List<OrderDetailResponse> getAllOrderDetail(){
         return orderService.getAllOrder();
     }

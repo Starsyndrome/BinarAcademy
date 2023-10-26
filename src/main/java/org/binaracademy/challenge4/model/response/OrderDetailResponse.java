@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderDetailResponse {
+    private String username;
     private String productName;
     private Double productPrice;
     private Integer quantity;
     private Double totalPrice;
-    private UserResponseOrder userResponseOrder;
     private OrderResponse orderResponse;
 }

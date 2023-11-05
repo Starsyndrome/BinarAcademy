@@ -3,9 +3,10 @@ package org.binaracademy.challenge4.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.binaracademy.challenge4.model.Merchant;
-import org.binaracademy.challenge4.model.response.ErrorResponse;
-import org.binaracademy.challenge4.model.response.MerchantResponse;
-import org.binaracademy.challenge4.model.response.Response;
+import org.binaracademy.challenge4.DTO.response.ErrorResponse;
+import org.binaracademy.challenge4.DTO.response.MerchantResponse;
+import org.binaracademy.challenge4.DTO.responseController.MerchantOpenUpdate;
+import org.binaracademy.challenge4.DTO.response.Response;
 import org.binaracademy.challenge4.service.MerchantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,29 +26,34 @@ public class MerchantController {
     MerchantService merchantService;
 
     @PostMapping(value = "/addMerchant", consumes = "application/json")
-    public ResponseEntity addNewMerchant(@RequestBody Merchant merchant){
+    public ResponseEntity<String> addNewMerchant(@RequestBody Merchant merchant){
         merchantService.addNewMerchant(merchant);
-        return ResponseEntity.ok("Add new merchant with merchant name: " +
-                merchant.getMerchantName() + " successfully!");
+        return ResponseEntity.ok()
+                .body("Add new merchant with merchant name: " + merchant.getMerchantName() + " successfully!");
     }
 
-    @PutMapping(value = "/updateStatusMerchant/{codeMerchant}")
-    public ResponseEntity updateStatusMerchant(@RequestParam("newStatusMerchant") Boolean statusMerchant,
+    @PutMapping(value = "/update/statusMerchant/{codeMerchant}")
+    public ResponseEntity<MerchantOpenUpdate> updateStatusMerchant(@RequestParam("newStatusMerchant") Boolean newStatusMerchant,
                                        @PathVariable("codeMerchant") String codeMerchant,
                                        @RequestBody Merchant merchant){
-        merchantService.editStatusMerchant(codeMerchant, statusMerchant);
-        return ResponseEntity.ok("Update merchant status successfully, merchant code: " +
-                codeMerchant + " status: " + statusMerchant);
+        merchantService.editStatusMerchant(codeMerchant, newStatusMerchant);
+        return ResponseEntity.ok()
+                .body(MerchantOpenUpdate.builder()
+                        .merchantCode(codeMerchant)
+                        .status(newStatusMerchant)
+                        .merchantStatus("Merchant status successfully updated!")
+                .build());
     }
 
     @GetMapping(value = "/merchantOpen", produces = "application/json")
-    public List<MerchantResponse> merchantOpen(){
-        return merchantService.showMerchantOpen();
+    public ResponseEntity<List<MerchantResponse>> merchantOpen(){
+        return ResponseEntity.ok()
+                .body(merchantService.showMerchantOpen());
     }
 
     @GetMapping(value = "/merchantDetail")
     @Operation(summary = "Getting detail of one merchant by merchant name")
-    public ResponseEntity getMerchantDetail(@RequestParam("merchantName") String merchantName){
+    public ResponseEntity<Response<Object>> getMerchantDetail(@RequestParam("merchantName") String merchantName){
         MerchantResponse merchantResponse = merchantService.getMerchantDetail(merchantName);
         if (Objects.nonNull(merchantResponse)) {
             return new ResponseEntity<>(Response.builder()

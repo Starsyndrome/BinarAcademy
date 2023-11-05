@@ -1,12 +1,13 @@
 package org.binaracademy.challenge4.service;
-
-import org.binaracademy.challenge4.model.OrderDetail;
-import org.binaracademy.challenge4.model.response.OrderDetailResponse;
+;
+import org.binaracademy.challenge4.model.Order;
+import org.binaracademy.challenge4.DTO.response.OrderDetailResponse;
 
 import java.util.List;
 
 public interface OrderService {
-    void addNewOrder(OrderDetail orderDetail); // auto generate id
+
+    Order addNewOrder(Order order);
 
     List<OrderDetailResponse> getAllOrder();
 }

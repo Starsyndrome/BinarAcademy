@@ -1,14 +1,12 @@
 package org.binaracademy.challenge4.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +17,7 @@ import java.util.List;
 @Entity
 @Table(name = "\"order\"")
 public class Order implements Serializable{
+
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -27,12 +26,12 @@ public class Order implements Serializable{
     private String orderID;
 
     @ManyToOne
-    @JoinColumn(name = "users_id")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private Users users;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "order_time")
-    private Date orderTime;
+    private LocalDateTime orderTime;
 
     @Column(name = "destination_address")
     private String destinationAddress;
@@ -41,6 +40,5 @@ public class Order implements Serializable{
     private Boolean completed;
 
     @OneToMany(mappedBy = "order")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<OrderDetail> orderDetails;
 }

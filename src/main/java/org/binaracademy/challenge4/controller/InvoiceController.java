@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
 
+
 @CrossOrigin("*")
 @RestController
 @Slf4j
@@ -19,8 +20,8 @@ public class InvoiceController {
     @Autowired
     InvoiceService invoiceService;
 
-    @GetMapping(value = "/generate-invoice", produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity generateInvoice(@RequestHeader("username") String username) throws JRException, FileNotFoundException {
+    @PostMapping(value = "/generate-invoice", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<byte[]> generateInvoice(@RequestHeader("username") String username) throws JRException, FileNotFoundException {
         return ResponseEntity.ok()
                 .body(invoiceService.generateInvoice(username));
     }

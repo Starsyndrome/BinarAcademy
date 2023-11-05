@@ -1,8 +1,8 @@
 package org.binaracademy.challenge4.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.binaracademy.challenge4.model.Users;
-import org.binaracademy.challenge4.model.response.UserResponse;
+import org.binaracademy.challenge4.DTO.response.UserResponse;
+import org.binaracademy.challenge4.DTO.responseController.UserEmailUpdate;
 import org.binaracademy.challenge4.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,40 +17,32 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping(value = "/addUser", consumes = "application/json")
-    public ResponseEntity addNewUser(@RequestBody Users users){
-        userService.addNewUsers(users);
-        return ResponseEntity.ok("Add new user with username: " +
-                users.getUsername() + " successfully!");
-    }
-
-    @PutMapping(value = "/updateUsername/{username}")
-    public ResponseEntity updateUsername(@RequestParam("newUsername") String newUserUsername,
+    @PutMapping(value = "/update/username/{username}")
+    public ResponseEntity<String> updateUsername(@RequestParam("newUsername") String newUserUsername,
                                  @PathVariable("username") String oldUserUsername,
                                  @RequestBody UserResponse userResponse){;
         userService.updateUserUsername(newUserUsername, oldUserUsername);
-        return ResponseEntity.ok("Update username successfully, new username: " + newUserUsername);
+        return ResponseEntity.ok()
+                .body("Update username successfully, new username: " + newUserUsername);
     }
 
-    @PutMapping(value = "/updateEmail/{email}")
-    public ResponseEntity updateEmail(@RequestParam("newEmail") String newEmail,
-                                 @PathVariable("email") String oldEmail,
-                                 @RequestBody UserResponse userResponse){
-        userService.updateUserEmail(newEmail, oldEmail);
-        return ResponseEntity.ok("Update email successfully, new email: " + newEmail);
-    }
-
-    @PutMapping(value = "/updatePassword/{username}")
-    public ResponseEntity updatePassword(@RequestParam("newPassword") String newPassword,
+    @PutMapping(value = "/update/email/{username}")
+    public ResponseEntity<UserEmailUpdate> updateEmail(@RequestParam("newEmail") String newEmail,
                                  @PathVariable("username") String username,
                                  @RequestBody UserResponse userResponse){
-        userService.updateUserPassword(newPassword, username);
-        return ResponseEntity.ok("Update password with username " + username + " successfully!");
+        userService.updateUserEmail(newEmail, username);
+        return ResponseEntity.ok()
+                .body(UserEmailUpdate.builder()
+                        .username(username)
+                        .email(newEmail)
+                        .info("Update user email successfully ")
+                        .build());
     }
 
-    @DeleteMapping(value = "/deleteUser/{username}")
-    public ResponseEntity deleteUserFromID(@PathVariable("username") String username){
+    @DeleteMapping(value = "/delete/user/{username}")
+    public ResponseEntity<String> deleteUserFromUsername(@PathVariable("username") String username){
         userService.deleteUserFromUsername(username);
-        return ResponseEntity.ok("User with username: " + username + " successfully deleted");
+        return ResponseEntity.ok()
+                .body("User with username: " + username + " successfully deleted");
     }
 }

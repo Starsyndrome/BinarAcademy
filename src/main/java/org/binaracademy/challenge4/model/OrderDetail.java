@@ -17,6 +17,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "order_detail")
 public class OrderDetail implements Serializable {
+
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(

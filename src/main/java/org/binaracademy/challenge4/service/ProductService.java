@@ -1,24 +1,24 @@
 package org.binaracademy.challenge4.service;
 
 import org.binaracademy.challenge4.model.Product;
-import org.binaracademy.challenge4.model.response.ProductResponse;
+import org.binaracademy.challenge4.DTO.response.ProductResponse;
 
 import java.util.List;
 
 
 public interface ProductService {
+
     ProductResponse getProductDetail(String selectedProduct);
 
     List<ProductResponse> getAllProduct();
 
-    void addNewProduct(Product product); // Auto generate id
-//    void updateProductName(String oldProductName, String newProductName, String Id);
+    Product addNewProduct(Product product);
 
-    void updateProductName(String oldProductName, String newProductName);
-//    void updateProductPrice(String productCode, double newProductPrice, String Id);
+    Boolean updateProductName(String productCode, String newProductName);
 
-    void updateProductPrice(Double newProductPrice, String productCode);
-//    void deleteProductFromName(Product product);
+    Boolean updateProductPrice(Double newProductPrice, String productCode);
+
+    Boolean updateProductCode(String newProductCode, String productName);
 
     void deleteProductFromName(String productName);
 }

@@ -9,6 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
 
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -16,6 +17,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "merchant")
 public class Merchant implements Serializable {
+
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -33,5 +35,5 @@ public class Merchant implements Serializable {
     private String merchantLocation;
 
     @Column(name = "merchant_open")
-     private Boolean open;
+    private Boolean open;
 }

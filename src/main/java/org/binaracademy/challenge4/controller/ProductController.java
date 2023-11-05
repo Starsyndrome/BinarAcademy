@@ -3,9 +3,12 @@ package org.binaracademy.challenge4.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.binaracademy.challenge4.model.Product;
-import org.binaracademy.challenge4.model.response.ErrorResponse;
-import org.binaracademy.challenge4.model.response.ProductResponse;
-import org.binaracademy.challenge4.model.response.Response;
+import org.binaracademy.challenge4.DTO.response.ErrorResponse;
+import org.binaracademy.challenge4.DTO.response.ProductResponse;
+import org.binaracademy.challenge4.DTO.response.Response;
+import org.binaracademy.challenge4.DTO.responseController.ProductCodeUpdate;
+import org.binaracademy.challenge4.DTO.responseController.ProductNameUpdate;
+import org.binaracademy.challenge4.DTO.responseController.ProductPriceUpdate;
 import org.binaracademy.challenge4.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
+
 
 @CrossOrigin("*")
 @RestController
@@ -25,46 +29,67 @@ public class ProductController {
     ProductService productService;
 
     @GetMapping(value = "/getAllProduct", produces = "application/json")
-    public List<ProductResponse> getAllProduct(){
-        return productService.getAllProduct();
+    public ResponseEntity<List<ProductResponse>> getAllProduct(){
+        return ResponseEntity.ok()
+                .body(productService.getAllProduct());
     }
 
     @PostMapping(value = "/addProduct", consumes = "application/json")
-    public ResponseEntity addNewProduct(@RequestBody Product product){
+    public ResponseEntity<String> addNewProduct(@RequestBody Product product){
         productService.addNewProduct(product);
-        return ResponseEntity.ok("Add new product with product name: " +
-                product.getProductName() + " successfully!");
+        return ResponseEntity.ok()
+                .body("Add new product with product name: " + product.getProductName() + " successfully!");
     }
 
-    @PutMapping(value = "/updateProductName/{productName}")
-    @Operation(summary = "Update Product Name with Product Name")
-    public ResponseEntity updateProductName(@RequestParam("newProductName") String newProductName,
-                                    @PathVariable("productName") String oldProductName,
+    @PutMapping(value = "/update/productName/{productCode}")
+    public ResponseEntity<ProductNameUpdate> updateProductName(@RequestParam("newProductName") String newProductName,
+                                    @PathVariable("productCode") String productCode,
                                     @RequestBody ProductResponse productResponse){
-        productService.updateProductName(oldProductName,newProductName);
-        return ResponseEntity.ok("Update product name successfully, new product name: " +
-                newProductName);
+        productService.updateProductName(productCode,newProductName);
+        return ResponseEntity.ok()
+                .body(ProductNameUpdate.builder()
+                        .productCode(productCode)
+                        .newProductName(newProductName)
+                        .info("Update product name successfully!")
+                        .build());
     }
 
-    @PutMapping(value = "/updateProductPrice/{productCode}")
-    @Operation(summary = "Update Product Price with Product Code")
-    public ResponseEntity updateProductPrice(@RequestParam("newProductPrice") Double newProductPrice,
+    @PutMapping(value = "/update/productPrice/{productCode}")
+    public ResponseEntity<ProductPriceUpdate> updateProductPrice(@RequestParam("newProductPrice") Double newProductPrice,
                                      @PathVariable("productCode") String productCode,
                                      @RequestBody ProductResponse productResponse){
         productService.updateProductPrice(newProductPrice, productCode);
-        return ResponseEntity.ok("Update product price successfully, new product price: " +
-                newProductPrice);
+        return ResponseEntity.ok()
+                .body(ProductPriceUpdate.builder()
+                        .productCode(productCode)
+                        .productPrice(newProductPrice)
+                        .info("Update product price successfully!")
+                        .build());
     }
 
-    @DeleteMapping(value = "/deleteProduct/{productName}")
-    public ResponseEntity deleteProductFromName(@PathVariable("productName") String productName){
+    @PutMapping(value = "/update/productCode/{productName}")
+    public ResponseEntity<ProductCodeUpdate> updateProductCode(@RequestParam("newProductCode") String newProductCode,
+                                            @PathVariable("productName") String productName,
+                                            @RequestBody ProductResponse productResponse){
+        productService.updateProductCode(newProductCode, productName);
+        return ResponseEntity.ok()
+                .body(ProductCodeUpdate.builder()
+                        .productName(productName)
+                        .productCode(newProductCode)
+                        .info("Update product code successfully!")
+                        .build());
+    }
+
+    @DeleteMapping(value = "/delete/product/{productName}")
+    public ResponseEntity<String> deleteProductFromName(@PathVariable("productName") String productName){
         productService.deleteProductFromName(productName);
-        return ResponseEntity.ok("Product with name: " + productName + " successfully deleted");
+        return ResponseEntity.ok()
+                .body("Product with name: " + productName + " successfully deleted");
     }
 
     @GetMapping(value = "/getProductDetail")
     @Operation(summary = "Getting detail of one product by product name")
-    public ResponseEntity getProductDetail(@RequestParam("productName") String productName){
+    public ResponseEntity<Response<Object>> getProductDetail(@RequestParam("productName") String productName){
         ProductResponse productResponse = productService.getProductDetail(productName);
         if (Objects.nonNull(productResponse)) {
             return new ResponseEntity<>(Response.builder()

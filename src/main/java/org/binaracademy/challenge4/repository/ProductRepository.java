@@ -6,16 +6,24 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface ProductRepository extends JpaRepository<Product, String> {
-    Product findByProductName(String productName);
+
+    Optional<Product> findByProductName(String productName);
+
+    Product findByProductCode(String productCode);
 
     @Query(nativeQuery = true, value = "delete from product where product_name = :productName")
     void deleteProductFromName(@Param("productName") String productName);
 
-    @Query(nativeQuery = true, value = "update product set product_name = :newProductName where product_name = :oldProductName")
-    void editNameProduct(@Param("oldProductName") String oldProductName, @Param("newProductName") String newProductName);
+    @Query(nativeQuery = true, value = "update product set product_name = :newProductName where product_code = :productCode")
+    void editNameProduct(@Param("productCode") String productCode, @Param("newProductName") String newProductName);
 
     @Query(nativeQuery = true, value = "update product set product_price = :newProductPrice where product_code = :productCode")
     void editPriceProduct(@Param("newProductPrice") Double newProductPrice, @Param("productCode") String productCode);
+
+    @Query(nativeQuery = true, value = "update product set product_code = :newProductCode where product_name = :productName")
+    void editCodeProduct(@Param("newProductCode") String newProductCode, @Param("productName") String productName);
 }

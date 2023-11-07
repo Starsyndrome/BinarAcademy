@@ -95,12 +95,14 @@ public class ProductServiceImplements implements ProductService {
     }
 
     @Override
-    public void deleteProductFromName(String productName){
+    public Boolean deleteProductFromName(String productName){
         try {
             productRepository.deleteProductFromName(productName);
-                log.info("Deleted product successfully!");
+            log.info("Deleted product successfully!");
+            return true;
         } catch (Exception e) {
             log.error("Error");
+            return false;
         }
     }
 }

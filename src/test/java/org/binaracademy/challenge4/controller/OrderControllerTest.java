@@ -68,9 +68,9 @@ public class OrderControllerTest {
                                 .completed(true)
                                 .build())
                         .productName("Test Order")
-                        .productPrice(0.0)
+                        .productPrice(10000.0)
                         .quantity(1)
-//                        .totalPrice() auto
+                        .totalPrice(10000.0)
                 .build()));
 
         ResponseEntity<List<OrderDetailResponse>> getAllOrderDetail = orderController.getAllOrderDetail();

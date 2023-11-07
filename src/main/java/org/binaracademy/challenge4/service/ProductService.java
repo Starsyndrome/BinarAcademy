@@ -20,5 +20,5 @@ public interface ProductService {
 
     Boolean updateProductCode(String newProductCode, String productName);
 
-    void deleteProductFromName(String productName);
+    Boolean deleteProductFromName(String productName);
 }

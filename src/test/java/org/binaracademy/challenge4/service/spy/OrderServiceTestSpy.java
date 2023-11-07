@@ -1,7 +1,6 @@
 package org.binaracademy.challenge4.service.spy;
 
 import org.binaracademy.challenge4.DTO.response.OrderDetailResponse;
-import org.binaracademy.challenge4.DTO.response.OrderResponse;
 import org.binaracademy.challenge4.model.Order;
 import org.binaracademy.challenge4.model.OrderDetail;
 import org.binaracademy.challenge4.model.Product;
@@ -18,7 +17,6 @@ import org.springframework.boot.test.mock.mockito.SpyBean;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 
@@ -34,9 +32,7 @@ public class OrderServiceTestSpy {
 
     @Test
     void getAllOrder(){
-        /*
-        Test passed, tapi entah pas di-test gini ga ke-insert di table order detail, cuma ke-insert di table order
-         */
+        // Test passed, tapi entah pas di-test gini ga ke-insert di table order detail, cuma ke-insert di table order
         orderService.addNewOrder(Order.builder()
                         .users(Users.builder()
                                 .id(2L)

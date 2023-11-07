@@ -8,13 +8,11 @@ import org.binaracademy.challenge4.DTO.response.MessageResponse;
 import org.binaracademy.challenge4.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@CrossOrigin("*")
 @Slf4j
 @RestController
 @RequestMapping(value = "/api/auth")

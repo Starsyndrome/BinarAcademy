@@ -35,7 +35,7 @@ public class UserController {
                 .body(UserEmailUpdate.builder()
                         .username(username)
                         .email(newEmail)
-                        .info("Update user email successfully ")
+                        .info("Update user email successfully!")
                         .build());
     }
 
@@ -43,6 +43,6 @@ public class UserController {
     public ResponseEntity<String> deleteUserFromUsername(@PathVariable("username") String username){
         userService.deleteUserFromUsername(username);
         return ResponseEntity.ok()
-                .body("User with username: " + username + " successfully deleted");
+                .body("User with username: " + username + " successfully deleted!");
     }
 }

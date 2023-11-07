@@ -20,7 +20,7 @@ public class UserController {
     @PutMapping(value = "/update/username/{username}")
     public ResponseEntity<String> updateUsername(@RequestParam("newUsername") String newUserUsername,
                                  @PathVariable("username") String oldUserUsername,
-                                 @RequestBody UserResponse userResponse){;
+                                 @RequestBody UserResponse userResponse){
         userService.updateUserUsername(newUserUsername, oldUserUsername);
         return ResponseEntity.ok()
                 .body("Update username successfully, new username: " + newUserUsername);

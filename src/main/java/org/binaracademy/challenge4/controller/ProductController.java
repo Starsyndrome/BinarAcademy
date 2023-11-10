@@ -80,7 +80,7 @@ public class ProductController {
                         .build());
     }
 
-    @DeleteMapping(value = "/delete/product/{productName}")
+    @DeleteMapping(value = "/delete/{productName}")
     public ResponseEntity<String> deleteProductFromName(@PathVariable("productName") String productName){
         productService.deleteProductFromName(productName);
         return ResponseEntity.ok()

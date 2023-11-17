@@ -1,12 +1,12 @@
 package org.binaracademy.challenge4.DTO.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @Builder
@@ -14,8 +14,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class OrderResponse {
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-    private LocalDateTime orderTime;
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    private Date orderTime;
 
     private String destinationAddress;
     private Boolean completed;

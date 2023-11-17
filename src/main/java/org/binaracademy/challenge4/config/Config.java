@@ -5,12 +5,17 @@ import org.binaracademy.challenge4.enumeration.ERole;
 import org.binaracademy.challenge4.model.Roles;
 import org.binaracademy.challenge4.repository.RoleRepository;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Configuration
 @Slf4j
+@EnableScheduling
+@EnableAsync
 public class Config {
+
     Config(RoleRepository roleRepository) {
-        log.info("Cheking roles presented");
+        log.info("Checking roles presented");
         for(ERole c : ERole.values()) {
             try {
                 Roles roles = roleRepository.findByRoleName(c)

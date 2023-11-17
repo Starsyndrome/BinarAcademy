@@ -11,7 +11,9 @@ import org.binaracademy.challenge4.repository.OrderRepository;
 import org.binaracademy.challenge4.repository.ProductRepository;
 import org.binaracademy.challenge4.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +32,7 @@ public class OrderServiceImplements implements OrderService {
     @Autowired
     ProductRepository productRepository;
 
+    @Transactional
     @Override
     public Order addNewOrder(Order order) {
         log.info("Processing new order");
@@ -54,6 +57,7 @@ public class OrderServiceImplements implements OrderService {
         return order;
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<OrderDetailResponse> getAllOrder() {
         log.info("Success get all order!");
@@ -71,5 +75,17 @@ public class OrderServiceImplements implements OrderService {
                         .totalPrice(orders.getTotalPrice())
                         .build())
                 .collect(Collectors.toList());
+    }
+
+    @Scheduled(cron = "0 0,15,30,45 12 * * *")
+    public void scheduledForLunch() {
+        log.info("Lunch Discount Promo");
+        System.out.println("Time for lunch, enjoy discount up to 50% for coffee menu at Stars Coffee!");
+    }
+
+    @Scheduled(cron = "0 0,15,30,45 18-19 * * *")
+    public void scheduledForDinner() {
+        log.info("Dinner Discount Promo");
+        System.out.println("Time for dinner, enjoy discount up to 30% for food & drinks at Stars Coffee!");
     }
 }

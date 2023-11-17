@@ -6,19 +6,23 @@ import org.binaracademy.challenge4.DTO.response.ProductResponse;
 import org.binaracademy.challenge4.repository.ProductRepository;
 import org.binaracademy.challenge4.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
+@Transactional
 @Service
 public class ProductServiceImplements implements ProductService {
 
     @Autowired
     ProductRepository productRepository;
 
+    @Transactional(readOnly = true)
     @Override
     public ProductResponse getProductDetail(String selectedProduct) {
         log.info("Getting product detail information");
@@ -31,6 +35,7 @@ public class ProductServiceImplements implements ProductService {
                 .orElse(null);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<ProductResponse> getAllProduct() {
         log.info("Success get all product!");
@@ -43,8 +48,9 @@ public class ProductServiceImplements implements ProductService {
                 .collect(Collectors.toList());
     }
 
+    @Async
     @Override
-    public Product addNewProduct(Product product) {
+    public void addNewProduct(Product product) {
         log.info("Processing add new product");
         Optional.ofNullable(product)
                 .map(newProduct -> productRepository.save(product))
@@ -58,51 +64,65 @@ public class ProductServiceImplements implements ProductService {
                     return Boolean.FALSE;
                 });
         log.info("Successfully add new product!");
-        return product;
     }
 
+    @Async
     @Override
-    public Boolean updateProductName(String productCode, String newProductName){
+    public void updateProductName(String productCode, String newProductName){
         try {
+            Product product = productRepository.findByProductCode(productCode);
+            if (!Optional.ofNullable(product).isPresent()){
+                log.info("Product is not available");
+            }
             productRepository.editNameProduct(productCode, newProductName);
-            return true;
+            log.info("Updating product name is successful, new product name: " + newProductName);
         } catch (Exception e) {
-            log.error("Error");
-            return false;
+            log.error("Updating product name failed, please try again!");
         }
     }
 
+    @Async
     @Override
-    public Boolean updateProductPrice(Double newProductPrice, String productCode){
+    public void updateProductPrice(Double newProductPrice, String productCode){
         try{
+            Product product = productRepository.findByProductCode(productCode);
+            if (!Optional.ofNullable(product).isPresent()){
+                log.info("Product is not available");
+            }
             productRepository.editPriceProduct(newProductPrice, productCode);
-            return true;
+            log.info("Updating product price is successful, new product price: " + newProductPrice);
         } catch (Exception e) {
-            log.error("Error");
-            return false;
+            log.error("Updating product price failed, please try again!");
         }
     }
 
+    @Async
     @Override
-    public Boolean updateProductCode(String newProductCode, String productName) {
+    public void updateProductCode(String newProductCode, String productName) {
         try {
+            Product product = productRepository.findByProductName(productName).orElse(null);
+            if (!Optional.ofNullable(product).isPresent()){
+                log.info("Product is not available");
+            }
             productRepository.editCodeProduct(newProductCode, productName);
-            return true;
+            log.info("Updating product code successful, new product code: " + newProductCode);
         } catch (Exception e) {
-            log.error("Error");
-            return false;
+            log.error("Updating product code failed, please try again!");
         }
     }
 
+    @Async
     @Override
-    public Boolean deleteProductFromName(String productName){
+    public void deleteProductFromName(String productName){
         try {
+            Product product = productRepository.findByProductName(productName).orElse(null);
+            if (!Optional.ofNullable(product).isPresent()){
+                log.info("Product is not available");
+            }
             productRepository.deleteProductFromName(productName);
             log.info("Deleted product successfully!");
-            return true;
         } catch (Exception e) {
-            log.error("Error");
-            return false;
+            log.error("Deleting product failed, please try again!");
         }
     }
 }

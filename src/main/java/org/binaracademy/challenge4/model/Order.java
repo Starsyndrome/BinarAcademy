@@ -1,12 +1,12 @@
 package org.binaracademy.challenge4.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -28,9 +28,9 @@ public class Order implements Serializable{
     @JoinColumn(name = "user_id")
     private Users users;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "order_time")
-    private LocalDateTime orderTime;
+    private Date orderTime;
 
     @Column(name = "destination_address")
     private String destinationAddress;

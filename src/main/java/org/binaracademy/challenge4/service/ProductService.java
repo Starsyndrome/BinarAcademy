@@ -12,13 +12,13 @@ public interface ProductService {
 
     List<ProductResponse> getAllProduct();
 
-    Product addNewProduct(Product product);
+    void addNewProduct(Product product);
 
-    Boolean updateProductName(String productCode, String newProductName);
+    void updateProductName(String productCode, String newProductName);
 
-    Boolean updateProductPrice(Double newProductPrice, String productCode);
+    void updateProductPrice(Double newProductPrice, String productCode);
 
-    Boolean updateProductCode(String newProductCode, String productName);
+    void updateProductCode(String newProductCode, String productName);
 
-    Boolean deleteProductFromName(String productName);
+    void deleteProductFromName(String productName);
 }

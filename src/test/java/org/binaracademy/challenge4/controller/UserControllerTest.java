@@ -32,7 +32,7 @@ public class UserControllerTest {
                 .emailAddress("usertest@gmail.com")
                 .build();
 
-        Mockito.when(userService.updateUserUsername(Mockito.anyString(), Mockito.anyString())).thenReturn(true);
+//        Mockito.when(userService.updateUserUsername(Mockito.anyString(), Mockito.anyString())).thenReturn(true);
         ResponseEntity<String> updateUsername = userController
                 .updateUsername("User Controller Test", "User Test", users);
         Mockito.verify(userService, Mockito.times(1))
@@ -50,7 +50,7 @@ public class UserControllerTest {
                 .emailAddress("usertest@gmail.com")
                 .build();
 
-        Mockito.when(userService.updateUserEmail(Mockito.anyString(), Mockito.anyString())).thenReturn(true);
+//        Mockito.when(userService.updateUserEmail(Mockito.anyString(), Mockito.anyString())).thenReturn(true);
         ResponseEntity<UserEmailUpdate> updateEmail = userController
                 .updateEmail("usercontrollertest@gmail.com", "User Controller Test", userResponse);
         Mockito.verify(userService, Mockito.times(1))

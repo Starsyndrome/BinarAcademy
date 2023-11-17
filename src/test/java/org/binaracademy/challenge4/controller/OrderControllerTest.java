@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,7 +39,7 @@ public class OrderControllerTest {
                 .users(Users.builder()
                         .id(1L)
                         .build())
-                .orderTime(LocalDateTime.now())
+                .orderTime(new Date())
                 .destinationAddress("Jakarta")
                 .completed(true)
                 .orderDetails(Arrays.asList(OrderDetail.builder()
@@ -63,7 +64,7 @@ public class OrderControllerTest {
         Mockito.when(orderService.getAllOrder()).thenReturn(Arrays.asList(OrderDetailResponse.builder()
                         .username("OrderTest")
                         .orderResponse(OrderResponse.builder()
-                                .orderTime(LocalDateTime.now())
+                                .orderTime(new Date())
                                 .destinationAddress("Setiabudi, Jakarta Selatan")
                                 .completed(true)
                                 .build())

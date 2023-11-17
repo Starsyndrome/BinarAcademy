@@ -39,8 +39,8 @@ public class MerchantControllerTest {
                 .open(true)
                 .build();
 
-        ResponseEntity<String> addNewMerchant = merchantController.addNewMerchant(merchant);
-        Mockito.when(merchantService.addNewMerchant(merchant)).thenReturn(merchant);
+        ResponseEntity<String> addNewMerchant = merchantController.addNewMercant(merchant);
+//        Mockito.when(merchantService.addNewMerchant(merchant)).thenReturn(merchant);
         Mockito.verify(merchantService, Mockito.times(1)).addNewMerchant(merchant);
 
         Assertions.assertEquals(HttpStatus.OK, addNewMerchant.getStatusCode());
@@ -123,8 +123,8 @@ public class MerchantControllerTest {
                 .open(true)
                 .build();
 
-        Mockito.when(merchantService.editStatusMerchant(Mockito.anyString(), Mockito.anyBoolean()))
-                .thenReturn(true);
+//        Mockito.when(merchantService.editStatusMerchant(Mockito.anyString(), Mockito.anyBoolean()))
+//                .thenReturn(true);
 
         ResponseEntity<MerchantOpenUpdate> updateStatusMerchant = merchantController
                 .updateStatusMerchant(false, "TEST", merchant);

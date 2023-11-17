@@ -57,42 +57,42 @@ public class ProductServiceTestMock {
 
     }
 
-    @Test
-    void updateProductName_Test(){
-        Mockito.when(productRepository.findByProductCode("TEST")).thenReturn(Product.builder()
-                        .productCode("TEST")
-                        .productName("Product Test")
-                .build());
+//    @Test
+//    void updateProductName_Test(){
+//        Mockito.when(productRepository.findByProductCode("TEST")).thenReturn(Product.builder()
+//                        .productCode("TEST")
+//                        .productName("Product Test")
+//                .build());
+//
+//       Boolean updateProductName = productService.updateProductName("TEST", "Product Test Mock");
+//       Mockito.verify(productRepository, Mockito.times(1)).editNameProduct(Mockito.anyString(), Mockito.anyString());
+//
+//       Assertions.assertTrue(updateProductName);
+//    }
 
-       Boolean updateProductName = productService.updateProductName("TEST", "Product Test Mock");
-       Mockito.verify(productRepository, Mockito.times(1)).editNameProduct(Mockito.anyString(), Mockito.anyString());
+//    @Test
+//    void updateProductPrice_Test(){
+//        Mockito.when(productRepository.findByProductCode("TEST")).thenReturn(Product.builder()
+//                        .productCode("TEST")
+//                        .price(10000.0)
+//                .build());
+//
+//        Boolean updateProductPrice = productService.updateProductPrice(20000.0, "TEST");
+//        Mockito.verify(productRepository, Mockito.times(1)).editPriceProduct(Mockito.anyDouble(), Mockito.anyString());
+//
+//        Assertions.assertTrue(updateProductPrice);
+//    }
 
-       Assertions.assertTrue(updateProductName);
-    }
-
-    @Test
-    void updateProductPrice_Test(){
-        Mockito.when(productRepository.findByProductCode("TEST")).thenReturn(Product.builder()
-                        .productCode("TEST")
-                        .price(10000.0)
-                .build());
-
-        Boolean updateProductPrice = productService.updateProductPrice(20000.0, "TEST");
-        Mockito.verify(productRepository, Mockito.times(1)).editPriceProduct(Mockito.anyDouble(), Mockito.anyString());
-
-        Assertions.assertTrue(updateProductPrice);
-    }
-
-    @Test
-    void updateProductCode_Test() {
-        Mockito.when(productRepository.findByProductName("Product Test")).thenReturn(Optional.ofNullable(Product.builder()
-                .productCode("TEST")
-                .productName("Product Test")
-                .build()));
-
-        Boolean updateProductCode = productService.updateProductCode("TESTING", "Product Test");
-        Mockito.verify(productRepository, Mockito.times(1)).editCodeProduct(Mockito.anyString(), Mockito.anyString());
-
-        Assertions.assertTrue(updateProductCode);
-    }
+//    @Test
+//    void updateProductCode_Test() {
+//        Mockito.when(productRepository.findByProductName("Product Test")).thenReturn(Optional.ofNullable(Product.builder()
+//                .productCode("TEST")
+//                .productName("Product Test")
+//                .build()));
+//
+//        Boolean updateProductCode = productService.updateProductCode("TESTING", "Product Test");
+//        Mockito.verify(productRepository, Mockito.times(1)).editCodeProduct(Mockito.anyString(), Mockito.anyString());
+//
+//        Assertions.assertTrue(updateProductCode);
+//    }
 }

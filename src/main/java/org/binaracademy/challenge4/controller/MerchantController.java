@@ -26,7 +26,7 @@ public class MerchantController {
     MerchantService merchantService;
 
     @PostMapping(value = "/addMerchant", consumes = "application/json")
-    public ResponseEntity<String> addNewMerchant(@RequestBody Merchant merchant){
+    public ResponseEntity<String> addNewMercant(@RequestBody Merchant merchant){
         merchantService.addNewMerchant(merchant);
         return ResponseEntity.ok()
                 .body("Add new merchant with merchant name: " + merchant.getMerchantName() + " successfully!");
@@ -36,7 +36,7 @@ public class MerchantController {
     public ResponseEntity<MerchantOpenUpdate> updateStatusMerchant(@RequestParam("newStatusMerchant") Boolean newStatusMerchant,
                                        @PathVariable("codeMerchant") String codeMerchant,
                                        @RequestBody Merchant merchant){
-        merchantService.editStatusMerchant(codeMerchant, newStatusMerchant);
+       merchantService.editStatusMerchant(codeMerchant, newStatusMerchant);
         return ResponseEntity.ok()
                 .body(MerchantOpenUpdate.builder()
                         .merchantCode(codeMerchant)

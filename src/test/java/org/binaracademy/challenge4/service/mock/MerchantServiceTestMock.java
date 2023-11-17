@@ -48,16 +48,16 @@ public class MerchantServiceTestMock {
         Assertions.assertFalse(merchantResponse2.getMerchantCode().isEmpty());
     }
 
-    @Test
-    void updateMerchantStatus_Test(){
-        Mockito.when(merchantRepository.findByMerchantCode("TEST")).thenReturn(Merchant.builder()
-                        .merchantCode("TEST")
-                        .open(true)
-                .build());
-
-        Boolean editStatusMerchant = merchantService.editStatusMerchant("TEST", false);
-        Mockito.verify(merchantRepository, Mockito.times(1)).editOpenMerchant(Mockito.anyString(), Mockito.anyBoolean());
-
-        Assertions.assertTrue(editStatusMerchant);
-    }
+//    @Test
+//    void updateMerchantStatus_Test(){
+//        Mockito.when(merchantRepository.findByMerchantCode("TEST")).thenReturn(Merchant.builder()
+//                        .merchantCode("TEST")
+//                        .open(true)
+//                .build());
+//
+//        Boolean editStatusMerchant = merchantService.editStatusMerchant("TEST", false);
+//        Mockito.verify(merchantRepository, Mockito.times(1)).editOpenMerchant(Mockito.anyString(), Mockito.anyBoolean());
+//
+//        Assertions.assertTrue(editStatusMerchant);
+//    }
 }

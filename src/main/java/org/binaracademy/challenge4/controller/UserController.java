@@ -1,5 +1,6 @@
 package org.binaracademy.challenge4.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.binaracademy.challenge4.DTO.response.UserResponse;
 import org.binaracademy.challenge4.DTO.responseController.UserEmailUpdate;

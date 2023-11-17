@@ -9,11 +9,11 @@ public interface MerchantService {
 
     MerchantResponse getMerchantDetail(String selectedMerchant);
 
-    Merchant addNewMerchant(Merchant merchant);
+    void addNewMerchant(Merchant merchant);
 
     List<MerchantResponse> showMerchantOpen();
 
-    Boolean editStatusMerchant(String codeMerchant, Boolean newStatus);
+    void editStatusMerchant(String codeMerchant, Boolean newStatus);
 
     List<MerchantResponse> getAllMerchant();
 }

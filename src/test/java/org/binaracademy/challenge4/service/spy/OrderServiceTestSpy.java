@@ -17,6 +17,7 @@ import org.springframework.boot.test.mock.mockito.SpyBean;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 
@@ -37,7 +38,7 @@ public class OrderServiceTestSpy {
                         .users(Users.builder()
                                 .id(2L)
                                 .build())
-                        .orderTime(LocalDateTime.now())
+                        .orderTime(new Date())
                         .destinationAddress("Bojong")
                         .completed(true)
                         .orderDetails(Arrays.asList(OrderDetail.builder()
@@ -53,7 +54,7 @@ public class OrderServiceTestSpy {
                                 .users(Users.builder()
                                         .username("Alfarizki")
                                         .build())
-                                .orderTime(LocalDateTime.now())
+                                .orderTime(new Date())
                                 .destinationAddress("Jakarta")
                                 .completed(true)
                                 .build())

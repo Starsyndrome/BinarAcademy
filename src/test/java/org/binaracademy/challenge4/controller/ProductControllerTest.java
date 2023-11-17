@@ -45,7 +45,7 @@ public class ProductControllerTest {
                 .build();
 
         ResponseEntity<String> addNewProduct = productController.addNewProduct(product);
-        Mockito.when(productService.addNewProduct(product)).thenReturn(product);
+//        Mockito.when(productService.addNewProduct(product)).thenReturn(product);
         Mockito.verify(productService, Mockito.times(1)).addNewProduct(product);
 
         Assertions.assertEquals(HttpStatus.OK, addNewProduct.getStatusCode());
@@ -122,8 +122,8 @@ public class ProductControllerTest {
                 .productPrice(0.0)
                 .build();
 
-        Mockito.when(productService.updateProductName(Mockito.anyString(), Mockito.anyString()))
-                .thenReturn(true);
+//        Mockito.when(productService.updateProductName(Mockito.anyString(), Mockito.anyString()))
+//                .thenReturn(true);
 
         ResponseEntity<ProductNameUpdate> updateProductName = productController
                 .updateProductName("Product Controller Test", "CODE", product);
@@ -143,8 +143,8 @@ public class ProductControllerTest {
                 .productPrice(0.0)
                 .build();
 
-        Mockito.when(productService.updateProductPrice(Mockito.anyDouble(), Mockito.anyString()))
-                .thenReturn(true);
+//        Mockito.when(productService.updateProductPrice(Mockito.anyDouble(), Mockito.anyString()))
+//                .thenReturn(true);
 
         ResponseEntity<ProductPriceUpdate> updateProductPrice = productController
                 .updateProductPrice(99999.9, "CODE", product);
@@ -163,8 +163,8 @@ public class ProductControllerTest {
                 .productPrice(0.0)
                 .build();
 
-        Mockito.when(productService.updateProductCode(Mockito.anyString(), Mockito.anyString()))
-                .thenReturn(true);
+//        Mockito.when(productService.updateProductCode(Mockito.anyString(), Mockito.anyString()))
+//                .thenReturn(true);
 
         ResponseEntity<ProductCodeUpdate> updateProductCode = productController
                 .updateProductCode("PRCD", "Product Test", product);

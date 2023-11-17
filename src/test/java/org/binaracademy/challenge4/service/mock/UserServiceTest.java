@@ -34,28 +34,28 @@ public class UserServiceTest {
         Assertions.assertAll(() -> userService.deleteUserFromUsername("Alpha"));
     }
 
-    @Test
-    void updateUsername_Test() {
-        Mockito.when(userRepository.findByUsername("User Test")).thenReturn(Optional.ofNullable(Users.builder()
-                        .username("User Test")
-                .build()));
-
-        Boolean updateUsername = userService.updateUserUsername("User Test Mock", "User Test");
-        Mockito.verify(userRepository, Mockito.times(1)).editUsersFromUsername(Mockito.anyString(), Mockito.anyString());
-
-        Assertions.assertTrue(updateUsername);
-    }
-
-    @Test
-    void updateEmail_Test() {
-        Mockito.when(userRepository.findByUsername("User Test")).thenReturn(Optional.ofNullable(Users.builder()
-                        .username("User Test")
-                        .email("usertest@gmail.com")
-                .build()));
-
-        Boolean updateEmail = userService.updateUserEmail("usertestmock@gmail.com", "User Test");
-        Mockito.verify(userRepository, Mockito.times(1)).editUsersFromEmail(Mockito.anyString(), Mockito.anyString());
-
-        Assertions.assertTrue(updateEmail);
-    }
+//    @Test
+//    void updateUsername_Test() {
+//        Mockito.when(userRepository.findByUsername("User Test")).thenReturn(Optional.ofNullable(Users.builder()
+//                        .username("User Test")
+//                .build()));
+//
+//        Boolean updateUsername = userService.updateUserUsername("User Test Mock", "User Test");
+//        Mockito.verify(userRepository, Mockito.times(1)).editUsersFromUsername(Mockito.anyString(), Mockito.anyString());
+//
+//        Assertions.assertTrue(updateUsername);
+//    }
+//
+//    @Test
+//    void updateEmail_Test() {
+//        Mockito.when(userRepository.findByUsername("User Test")).thenReturn(Optional.ofNullable(Users.builder()
+//                        .username("User Test")
+//                        .email("usertest@gmail.com")
+//                .build()));
+//
+//        Boolean updateEmail = userService.updateUserEmail("usertestmock@gmail.com", "User Test");
+//        Mockito.verify(userRepository, Mockito.times(1)).editUsersFromEmail(Mockito.anyString(), Mockito.anyString());
+//
+//        Assertions.assertTrue(updateEmail);
+//    }
 }

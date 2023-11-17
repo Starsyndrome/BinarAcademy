@@ -10,6 +10,7 @@ import org.binaracademy.challenge4.repository.UserRepository;
 import org.binaracademy.challenge4.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
 
 import java.io.FileNotFoundException;
@@ -27,6 +28,7 @@ public class InvoiceServiceImplements implements InvoiceService {
     @Autowired
     UserRepository userRepository;
 
+    @Transactional(readOnly = true)
     @Override
     public byte[] generateInvoice(String username) throws FileNotFoundException, JRException {
         log.info("Generating invoice for: {}", username);

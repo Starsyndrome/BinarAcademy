@@ -6,6 +6,8 @@ import org.binaracademy.challenge4.DTO.response.ProductResponse;
 import org.binaracademy.challenge4.repository.ProductRepository;
 import org.binaracademy.challenge4.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -123,6 +125,24 @@ public class ProductServiceImplements implements ProductService {
             log.info("Deleted product successfully!");
         } catch (Exception e) {
             log.error("Deleting product failed, please try again!");
+        }
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<ProductResponse> getProductWithPagination(int page) {
+        try {
+            log.info("Trying to get products with pagination");
+            Page<Product> products = productRepository.getProductWithPagination(PageRequest.of(page, 3));
+            log.info("Success get all product with pagination!");
+            return products.map(product -> ProductResponse.builder()
+                    .productName(product.getProductName())
+                    .productCode(product.getProductCode())
+                    .productPrice(product.getPrice())
+                    .build());
+        } catch (Exception e) {
+            log.error("Error getting product with pagination");
+            throw e;
         }
     }
 }

@@ -1,7 +1,9 @@
 package org.binaracademy.challenge4.repository;
 
 import org.binaracademy.challenge4.model.Product;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -31,4 +33,7 @@ public interface ProductRepository extends JpaRepository<Product, String> {
     @Modifying
     @Query(nativeQuery = true, value = "update product set product_code = :newProductCode where product_name = :productName")
     void editCodeProduct(@Param("newProductCode") String newProductCode, @Param("productName") String productName);
+
+    @Query(nativeQuery = true, value = "select * from product")
+    Page<Product> getProductWithPagination(Pageable pageable);
 }

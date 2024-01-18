@@ -53,11 +53,13 @@ public class UserServiceImplements implements UserService {
     @Async
     @Override
     public void deleteUserFromUsername(String username) {
-        try { // Harus delete yang di table user_roles dulu baru bisa delete user
+        try {
             Users users = userRepository.findByUsername(username).orElse(null);
             if (!Optional.ofNullable(users).isPresent()){
                 log.info("User is not available");
             }
+            assert users != null;
+            users.getRoles().clear();
             userRepository.deleteUserFromUsername(username);
             log.info("Successfully deleted user!");
         } catch (Exception e){

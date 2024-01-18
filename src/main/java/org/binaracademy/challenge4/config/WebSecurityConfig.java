@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers("/api/auth/**", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**",
+                .antMatchers("/**","/api/auth/**", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**",
                         "/api/merchant/merchantOpen", "/api/product/getAllProduct", "/webjars/**", "/error").permitAll()
                 .antMatchers("/api/product/update/**", "/api/product/delete/**",
                         "api/product/addProduct", "api/merchant/update/**").hasAuthority(ERole.ROLE_MERCHANT.name())

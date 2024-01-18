@@ -11,6 +11,7 @@ import org.binaracademy.challenge4.DTO.responseController.ProductNameUpdate;
 import org.binaracademy.challenge4.DTO.responseController.ProductPriceUpdate;
 import org.binaracademy.challenge4.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,12 @@ public class ProductController {
 
     @Autowired
     ProductService productService;
+
+    @GetMapping(value = "/{page}")
+    public ResponseEntity<Page<ProductResponse>> getProductWithPagination(@PathVariable int page){
+        return ResponseEntity.ok()
+                .body(productService.getProductWithPagination(page));
+    }
 
     @GetMapping(value = "/getAllProduct", produces = "application/json")
     public ResponseEntity<List<ProductResponse>> getAllProduct(){

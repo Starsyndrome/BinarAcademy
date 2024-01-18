@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 
 @Data
@@ -36,4 +37,7 @@ public class Merchant implements Serializable {
 
     @Column(name = "merchant_open")
     private Boolean open;
+
+    @OneToMany(mappedBy = "merchant")
+    private List<Product> products;
 }
